@@ -51,10 +51,26 @@ public class ClienteRepository implements IClienteRepository {
 
 	}
 
+
+	
 	@Override
-	public void actualizarCliente(Cliente cliente) {
+	public Cliente buscar(String cedula) {
 		// TODO Auto-generated method stub
-		this.entityManager.merge(cliente);
+		return this.entityManager.find(Cliente.class, cedula);
+	}
+
+
+	@Override
+	public void eliminar(String cedula) {
+		// TODO Auto-generated method stub
+		Cliente cli = this.buscar(cedula);
+		this.entityManager.remove(cli);
+	}
+
+	@Override
+	public void actualizarCliente(String cedula) {
+		// TODO Auto-generated method stub
+		this.entityManager.merge(cedula);
 	}
 
 }

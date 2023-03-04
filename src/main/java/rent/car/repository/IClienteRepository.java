@@ -8,11 +8,15 @@ import rent.car.modelo.dto.VehiculoDTO;
 
 public interface IClienteRepository {
 
-	public List<VehiculoDTO> buscarVehiculosDisponibles(String marca, String modelo);
+	
 
+	public Cliente buscar(String cedula);
+	public void eliminar(String cedula );
+	
+	public List<VehiculoDTO> buscarVehiculosDisponibles(String marca, String modelo);
 	public Vehiculo BuscarVehiculo(String placa);
 
 	public void registrarseCliente(Cliente cliente);
 
-	public void actualizarCliente(Cliente cliente);
+	public void actualizarCliente(String cedula);
 }
