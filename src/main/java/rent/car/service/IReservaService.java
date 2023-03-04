@@ -1,5 +1,8 @@
 package rent.car.service;
 
-public interface IReservaService {
+import rent.car.modelo.dto.ReservaDTO;
 
+public interface IReservaService {
+	
+	public ReservaDTO retirarVehiculoReservado(Integer numeroReserva);
 }
