@@ -70,7 +70,7 @@ public class ClienteRepository implements IClienteRepository {
 	public void eliminar(String cedula) {
 		// TODO Auto-generated method stub
 		Query query= this.entityManager.createNativeQuery("DELETE FROM cliente WHERE clie_cedula=:datoCedula", Cliente.class);
-		query.setParameter("datoCedula", query);
+		query.setParameter("datoCedula", cedula);
 		query.executeUpdate();
 
 	}
