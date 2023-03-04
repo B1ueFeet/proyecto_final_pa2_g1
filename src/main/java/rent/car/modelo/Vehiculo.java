@@ -1,12 +1,14 @@
 package rent.car.modelo;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -37,6 +39,10 @@ public class Vehiculo {
 	private String avaluo;
 	@Column(name = "vehi_valor")
 	private BigDecimal valor;
+
+	// RELACIONES
+	@OneToMany(mappedBy = "vehiculo")
+	private List<Reserva> reserva;
 
 	// GETTER & SETTER
 	public Integer getId() {
@@ -117,6 +123,14 @@ public class Vehiculo {
 
 	public void setAvaluo(String avaluo) {
 		this.avaluo = avaluo;
+	}
+
+	public List<Reserva> getReserva() {
+		return reserva;
+	}
+
+	public void setReserva(List<Reserva> reserva) {
+		this.reserva = reserva;
 	}
 
 	// TO STRING
