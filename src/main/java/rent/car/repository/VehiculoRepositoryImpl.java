@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import rent.car.modelo.Vehiculo;
 
@@ -43,6 +44,15 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 	@Override
 	public void eliminar(Integer id) {
 		this.entityManager.remove(this.buscar(id));
+	}
+
+	@Override
+	public List<Vehiculo> buscar(String marca, String modelo) {
+		TypedQuery<Vehiculo> query = this.entityManager.createQuery(
+				"select v from Vehiculo v where c.marca = :datoMarca and c.modelo = datoModelo", Vehiculo.class);
+		query.setParameter("datoMarca", marca);
+		query.setParameter("datoModelo", modelo);
+		return query.getResultList();
 	}
 
 }
