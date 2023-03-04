@@ -9,17 +9,12 @@ import rent.car.modelo.Vehiculo;
 import rent.car.repository.IVehiculoRepository;
 
 @Service
-<<<<<<< HEAD
-public class VehiculoServiceImpl implements IVehiculoService{
-
-=======
 public class VehiculoServiceImpl implements IVehiculoService {
->>>>>>> 98b58857b85e453678e2516415489dca5c390acc
+
 	@Autowired
 	private IVehiculoRepository vehiculoRepository;
 	
 	@Override
-<<<<<<< HEAD
 	public void guardar(Vehiculo vehiculo) {
 		this.vehiculoRepository.insertar(vehiculo);
 	}
@@ -51,11 +46,10 @@ public class VehiculoServiceImpl implements IVehiculoService {
 		} else {
 			System.out.println("Vehículo no disponible, no es posible eliminar.");
 		}
-		
-=======
+	}
 	public List<Vehiculo> buscar(String marca, String modelo) {
 		return this.vehiculoRepository.buscar(marca, modelo);
->>>>>>> 98b58857b85e453678e2516415489dca5c390acc
+
 	}
 
 }
