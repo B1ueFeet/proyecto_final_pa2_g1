@@ -10,11 +10,11 @@ import rent.car.repository.IEmpleadoRepository;
 public class EpleadoServiceImpl implements IEmpleadoService{
 
 	@Autowired
-	private IEmpleadoRepository iEmpleadoRepository;
+	private IEmpleadoRepository empleadoRepository;
 	
 	@Override
 	public void ingresar(Empleado empleado) {
-		this.iEmpleadoRepository.ingresar(empleado);
+		this.empleadoRepository.ingresar(empleado);
 	}
 
 	@Override

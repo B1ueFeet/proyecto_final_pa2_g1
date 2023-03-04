@@ -19,13 +19,11 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 
 	@Override
 	public void insertar(Vehiculo vehiculo) {
-		// TODO Auto-generated method stub
 		this.entityManager.persist(vehiculo);
 	}
 
 	@Override
 	public List<Vehiculo> buscarPorMarca(String marca) {
-		// TODO Auto-generated method stub
 		Query query = this.entityManager.createNativeQuery("Select * from vehiculo where vehi_marca = :datoMarca",
 				Vehiculo.class);
 		query.setParameter("datoMarca", marca);
@@ -34,19 +32,16 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 
 	@Override
 	public Vehiculo buscar(Integer id) {
-		// TODO Auto-generated method stub
 		return this.entityManager.find(Vehiculo.class, id);
 	}
 
 	@Override
 	public void actualizar(Vehiculo vehiculo) {
-		// TODO Auto-generated method stub
 		this.entityManager.merge(vehiculo);
 	}
 
 	@Override
 	public void eliminar(Integer id) {
-		// TODO Auto-generated method stub
 		this.entityManager.remove(this.buscar(id));
 	}
 
