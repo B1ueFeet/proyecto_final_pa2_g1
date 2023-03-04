@@ -2,10 +2,13 @@ package rent.car.repository;
 
 import java.util.List;
 
+
+
 import org.springframework.stereotype.Repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import rent.car.modelo.Cliente;
@@ -56,21 +59,26 @@ public class ClienteRepository implements IClienteRepository {
 	@Override
 	public Cliente buscar(String cedula) {
 		// TODO Auto-generated method stub
-		return this.entityManager.find(Cliente.class, cedula);
+		Query query= this.entityManager.createQuery("SELECT c FROM Cliente c WHERE c.cedula= :datoCedula");
+		query.setParameter("datoCedula", cedula);
+		return (Cliente) query.getSingleResult();
+
 	}
 
 
 	@Override
 	public void eliminar(String cedula) {
 		// TODO Auto-generated method stub
-		Cliente cli = this.buscar(cedula);
-		this.entityManager.remove(cli);
+		Query query= this.entityManager.createNativeQuery("DELETE FROM cliente WHERE clie_cedula=:datoCedula", Cliente.class);
+		query.setParameter("datoCedula", query);
+		query.executeUpdate();
+
 	}
 
 	@Override
-	public void actualizarCliente(String cedula) {
+	public void actualizarCliente(Cliente cliente) {
 		// TODO Auto-generated method stub
-		this.entityManager.merge(cedula);
+		this.entityManager.merge(cliente);
 	}
 
 }

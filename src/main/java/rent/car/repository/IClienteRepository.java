@@ -18,5 +18,5 @@ public interface IClienteRepository {
 
 	public void registrarseCliente(Cliente cliente);
 
-	public void actualizarCliente(String cedula);
+	public void actualizarCliente(Cliente cliente);
 }
