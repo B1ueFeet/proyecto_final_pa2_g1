@@ -24,14 +24,19 @@ public class Reserva {
 	private Integer id;
 	@Column(name = "rese_fecha_inicio")
 	private LocalDateTime inicio;
+	
 	@Column(name = "rese_fecha_fin")
 	private LocalDateTime fin;
+	
 	@Column(name = "rese_subtotal")
 	private BigDecimal subtotal;
+	
 	@Column(name = "rese_iva")
 	private BigDecimal iva;
+	
 	@Column(name = "rese_total")
 	private BigDecimal total;
+	
 	@Column(name = "rese_estado")
 	private String estado;
 

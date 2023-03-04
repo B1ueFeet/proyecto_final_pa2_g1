@@ -50,4 +50,13 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 		this.entityManager.remove(this.buscar(id));
 	}
 
+	@Override
+	public List<Vehiculo> buscarPlaca(String placa) {
+		// TODO Auto-generated method stub
+		Query query = this.entityManager.createNativeQuery("Select * from vehiculo where vehi_placa = :datoPlaca",
+				Vehiculo.class);
+		query.setParameter("datoPlaca", placa);
+		return query.getResultList();
+	}
+
 }
