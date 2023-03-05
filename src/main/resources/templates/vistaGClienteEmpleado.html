@@ -13,7 +13,7 @@
 <body style="background-color:rgb(156, 221, 228); padding:25px;"> 
 
 <h3 style="color:crimson;">Registro Usuario</h3>
-	<form th:action="@{/clientes/insertar}" th:object="${cliente}" method="POST">
+	<form th:action="@{/empleados/insertar}" th:object="${cliente}" method="POST">
 		 <table>
 			<tr>
 				<td>
@@ -82,7 +82,7 @@
 		</table>
 		<input class="btn btn-primary" type="submit" value="Registrar">
 		<li class="nav-item">
-		<a href="/clientes/inicio"> Volver Atrás</a>
+		<a href="/empleados/inicio"> Volver Atrás</a>
 	    </li>
 	</form>
 	

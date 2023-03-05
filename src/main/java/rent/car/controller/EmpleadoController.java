@@ -10,7 +10,7 @@ import rent.car.modelo.Cliente;
 import rent.car.service.IClienteService;
 
 @Controller
-@RequestMapping("/clientes")
+@RequestMapping("/empleados")
 //como regla general siempre se debe poner el recurso general en plural
 //Manejo un recurso Persona
 
@@ -21,13 +21,13 @@ public class EmpleadoController {
 
 	@GetMapping("/inicio")
 	public String inicio() {
-		return "inicio";
+		return "vistaInicioEmpleado";
 	}
 
 	@GetMapping("/inicio/registro") // va a tomar referencia a la raiz de nuestra aplicacion
 	public String paginaInicio(Cliente cliente) {
 
-		return "guardarCliente";
+		return "vistaGClienteEmpleado";
 	}
 
 	@PostMapping("/insertar")
