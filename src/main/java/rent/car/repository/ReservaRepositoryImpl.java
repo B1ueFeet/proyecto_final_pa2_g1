@@ -55,7 +55,7 @@ public class ReservaRepositoryImpl implements IReservaRepository {
 	public ReservaDTO buscarPorNumero(Integer numeroReserva) {
 		// TODO Auto-generated method stub
 		TypedQuery<ReservaDTO> typedQuery = this.manager.createQuery(
-				"SELECT new ReservaDTO(e.placa, e.modelo, e.estado, e.cedula) from Reserva e WHERE e.id = :datoId",
+				"SELECT new rent.car.modelo.dto.ReservaDTO(e.placa, e.modelo, e.estado, e.cedula) from Reserva e WHERE e.id = :datoId",
 				ReservaDTO.class);
 		typedQuery.setParameter("datoId", numeroReserva);
 		return typedQuery.getSingleResult();

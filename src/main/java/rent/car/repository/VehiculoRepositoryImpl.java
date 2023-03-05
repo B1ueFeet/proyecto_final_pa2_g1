@@ -53,7 +53,7 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 	@Override
 	public List<Vehiculo> buscarMarcaModelo(String marca, String modelo) {
 		TypedQuery<Vehiculo> query = this.entityManager.createQuery(
-				"select v from Vehiculo v where c.marca = :datoMarca and c.modelo = datoModelo", Vehiculo.class);
+				"select c from Vehiculo c where c.marca = :datoMarca and c.modelo = datoModelo", Vehiculo.class);
 		query.setParameter("datoMarca", marca);
 		query.setParameter("datoModelo", modelo);
 		return query.getResultList();
@@ -74,7 +74,7 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 	public VehiculoDTO buscarPorPlaca(String placa) {
 
 		TypedQuery<VehiculoDTO> typedQuery = this.entityManager.createQuery(
-				"SELECT new VehiculoDTO(e.placa, e.modelo,"
+				"SELECT new rent.car.modelo.dto. VehiculoDTO(e.placa, e.modelo,"
 						+ "e.marca, e.anio, e.estado, e.valor) from Vehiculo e WHERE e.placa = :datoPlaca",
 				VehiculoDTO.class);
 
