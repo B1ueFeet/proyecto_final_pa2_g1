@@ -19,17 +19,10 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	// CRUD
 	@Override
 	public void insertar(Vehiculo vehiculo) {
 		this.entityManager.persist(vehiculo);
-	}
-
-	@Override
-	public List<Vehiculo> buscarPorMarca(String marca) {
-		Query query = this.entityManager.createNativeQuery("Select * from vehiculo where vehi_marca = :datoMarca",
-				Vehiculo.class);
-		query.setParameter("datoMarca", marca);
-		return query.getResultList();
 	}
 
 	@Override
@@ -47,16 +40,26 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 		this.entityManager.remove(this.buscar(id));
 	}
 
+	// BUSCAR MARCA
 	@Override
+	public List<Vehiculo> buscarMarca(String marca) {
+		Query query = this.entityManager.createNativeQuery("Select * from vehiculo where vehi_marca = :datoMarca",
+				Vehiculo.class);
+		query.setParameter("datoMarca", marca);
+		return query.getResultList();
+	}
 
-	public List<Vehiculo> buscar(String marca, String modelo) {
+	// BUSCAR MARCA, MODELO
+	@Override
+	public List<Vehiculo> buscarMarcaModelo(String marca, String modelo) {
 		TypedQuery<Vehiculo> query = this.entityManager.createQuery(
 				"select v from Vehiculo v where c.marca = :datoMarca and c.modelo = datoModelo", Vehiculo.class);
 		query.setParameter("datoMarca", marca);
 		query.setParameter("datoModelo", modelo);
 		return query.getResultList();
-	// Actualizar estado de vehiculo por placa
 	}
+
+	// ACTUALIZAR LISTA POR PLACA
 	@Override
 	public Integer actualizarEstado(String placa) {
 		// TODO Auto-generated method stub
@@ -80,12 +83,13 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 		return typedQuery.getSingleResult();
 	}
 
-	public List<Vehiculo> buscarPlaca(String placa) {
+	// BUSCAR PLACA
+	public Vehiculo buscarPlaca(String placa) {
 		// TODO Auto-generated method stub
-		Query query = this.entityManager.createNativeQuery("Select * from vehiculo where vehi_placa = :datoPlaca",
+		TypedQuery<Vehiculo> query = this.entityManager.createQuery("SELECT e from Vehiculo e WHERE e.placa = :datoPlaca",
 				Vehiculo.class);
 		query.setParameter("datoPlaca", placa);
-		return query.getResultList();
+		return query.getSingleResult();
 
 	}
 

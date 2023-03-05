@@ -7,23 +7,28 @@ import rent.car.modelo.dto.VehiculoDTO;
 
 public interface IVehiculoRepository {
 
+	// CRUD
 	public void insertar(Vehiculo vehiculo);
-	public List<Vehiculo> buscarPorMarca(String marca);
+
 	public Vehiculo buscar(Integer id);
 
-	public List<Vehiculo> buscarPlaca(String placa);
-
 	public void actualizar(Vehiculo vehiculo);
+
 	public void eliminar(Integer id);
-	
-	// BUSCAR
-	public List<Vehiculo> buscar(String marca, String modelo);
+
+	// BUSCAR MARCA, MODELO
+	public List<Vehiculo> buscarMarcaModelo(String marca, String modelo);
+
+	// BUSCAR MARCA
+	public List<Vehiculo> buscarMarca(String marca);
+
+	// BUSCAR PLACA
+	public Vehiculo buscarPlaca(String placa);
 
 	// Actualizar estado de vehiculo por placa
-
 	public Integer actualizarEstado(String placa);
 
-	//Obtener un vehiculoDTO por placa
+	// Obtener un vehiculoDTO por placa
 	public VehiculoDTO buscarPorPlaca(String placa);
 
 }

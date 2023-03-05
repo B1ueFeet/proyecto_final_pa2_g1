@@ -3,8 +3,11 @@ package rent.car.repository;
 import rent.car.modelo.Empleado;
 
 public interface IEmpleadoRepository {
-	
+
+	// CRUD
+
 	public void ingresar(Empleado empleado);
-	public Empleado buscarPorId(Integer id);
+
+	public Empleado buscar(Integer id);
 
 }

@@ -6,16 +6,22 @@ import rent.car.modelo.Vehiculo;
 
 public interface IVehiculoService {
 
-
+	// CRUD
 	public void guardar(Vehiculo vehiculo);
-	public List<Vehiculo> encontrarPorMarca(String marca);
+
 	public Vehiculo encontrar(Integer id);
+
 	public void actualizar(Vehiculo vehiculo);
+
 	public void borrar(Integer id);
 	
+	// BUSCAR MARCA
+	public List<Vehiculo> encontrarPorMarca(String marca);
+	
+	// BORRAR D
 	public void borrarDisponible(Integer id, Boolean D);
-
-	public List<Vehiculo> buscar(String marca, String modelo);
-
+	
+	// BUSCAR MARCA, MODELO
+	public List<Vehiculo> buscarMarcaModelo(String marca, String modelo);
 
 }

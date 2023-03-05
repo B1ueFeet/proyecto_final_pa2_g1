@@ -1,37 +1,41 @@
 package rent.car.service;
 
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import rent.car.modelo.Cliente;
 import rent.car.repository.IClienteRepository;
-import rent.car.repository.IEmpleadoRepository;
+
 @Service
 public class ClienteServiceImpl implements IClienteService {
 
 	@Autowired
 	private IClienteRepository clienteRepository;
-	
-	
-	 @Override
-		public void registrarComoCliente(String registro) {
-			// TODO Auto-generated method stub
-			
-			Cliente cliente = new Cliente();
-			cliente.setRegistro(registro);
-					
-			if (cliente.getRegistro().equals("C")) {
-			clienteRepository.registrarseCliente(cliente);
-			
-			}
-			
-			
-			
-		}
 
+	// CRUD
+	@Override
+	public void registrar(String registro, Cliente cliente) {
+		// TODO Auto-generated method stub
+		cliente.setRegistro(registro);
+		this.clienteRepository.insertar(cliente);
+	}
 
+	@Override
+	public void actualizar(Cliente cliente) {
+		this.clienteRepository.actualizar(cliente);
+	}
 
-	
-	
+	@Override
+	public void borrar(Integer id) {
+
+	}
+
+	// BUSCAR APELLIDO
+	@Override
+	public List<Cliente> buscarApellido(String apellido) {
+		return this.clienteRepository.buscarApellido(apellido);
+	}
+
 }

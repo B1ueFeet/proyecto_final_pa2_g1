@@ -1,19 +1,13 @@
 package rent.car.service;
 
-
-import rent.car.modelo.dto.ReservaDTO;
-
 import java.time.LocalDateTime;
 
 import rent.car.modelo.Reserva;
-
+import rent.car.modelo.dto.ReservaDTO;
 
 public interface IReservaService {
-	
-	public ReservaDTO retirarVehiculoReservado(Integer numeroReserva);
 
 	// CRUD
-
 	public void agregar(Reserva reserva);
 
 	public void modificar(Reserva reserva);
@@ -21,7 +15,11 @@ public interface IReservaService {
 	public Reserva encontrar(Integer id);
 
 	public void borrar(Integer id);
-	
-	public void reservar(String placa,String cedula,LocalDateTime inicio, LocalDateTime fin);
+
+	// RESERVAR
+	public void reservar(String placa, String cedula, LocalDateTime inicio, LocalDateTime fin);
+
+	// BUSCAR DTO
+	public ReservaDTO retirarVehiculoReservado(Integer numeroReserva);
 
 }

@@ -11,7 +11,8 @@ public class EpleadoServiceImpl implements IEmpleadoService {
 
 	@Autowired
 	private IEmpleadoRepository empleadoRepository;
-	
+
+	// CRUD
 	@Override
 	public void ingresar(Empleado empleado) {
 		this.empleadoRepository.ingresar(empleado);

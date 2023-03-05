@@ -9,18 +9,19 @@ import rent.car.modelo.Empleado;
 
 @Repository
 @Transactional
-public class EmpleadoRepositoryImpl implements IEmpleadoRepository{
+public class EmpleadoRepositoryImpl implements IEmpleadoRepository {
 
 	@PersistenceContext
 	private EntityManager entityManager;
-	
+
+	// CRUD
 	@Override
 	public void ingresar(Empleado empleado) {
 		this.entityManager.persist(empleado);
 	}
 
 	@Override
-	public Empleado buscarPorId(Integer id) {  //El id es integer, ver qpx
+	public Empleado buscar(Integer id) { 
 		return this.entityManager.find(Empleado.class, id);
 	}
 

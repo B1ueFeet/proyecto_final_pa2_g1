@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import rent.car.modelo.Cliente;
 import rent.car.modelo.Reserva;
 import rent.car.modelo.Vehiculo;
 import rent.car.modelo.dto.ReservaDTO;
@@ -27,7 +28,8 @@ public class ReservaServiceImpl implements IReservaService {
 
 	@Autowired
 	private IClienteRepository clienteRepository;
-
+	
+	// CRUD
 	@Override
 	public void agregar(Reserva reserva) {
 		// TODO Auto-generated method stub
@@ -51,23 +53,24 @@ public class ReservaServiceImpl implements IReservaService {
 		// TODO Auto-generated method stub
 		this.reservaRepository.eliminar(id);
 	}
-
+	
+	// RESERVAR
 	@Override
 	public void reservar(String placa, String cedula, LocalDateTime inicio, LocalDateTime fin) {
 		// TODO Auto-generated method stub
 
-		List<Vehiculo> vehiculo = this.vehiculoRepository.buscarPlaca(placa);
+		Vehiculo vehiculo = this.vehiculoRepository.buscarPlaca(placa);
+		Cliente cliente= this.clienteRepository.BuscarCedula(cedula);
 
-		if (vehiculo.get(0).getEstado() == "ND") {
-			System.out.println("No se encontró ningún vehículo con la placa " + placa);
+		if (vehiculo.getEstado() == "ND") {
+			System.out.println("El Vehiculo esta ocupado en las fechas seleccionadas");
 
 		} else {
-			System.out.println("VD");
-
+			System.out.println("El vehiculo esta disponible");
 			inicio = LocalDateTime.now();
 			Reserva reserva = new Reserva();
-			reserva.setCliente(clienteRepository.buscar(cedula));
-			reserva.setVehiculo(vehiculo.get(0));
+			reserva.setCliente(cliente);
+			reserva.setVehiculo(vehiculo);
 			reserva.setEstado("G");
 			reserva.setFin(fin);
 			reserva.setInicio(inicio);
@@ -76,21 +79,22 @@ public class ReservaServiceImpl implements IReservaService {
 
 			// Calcular dias
 			dias = Period.between(LocalDate.from(inicio), LocalDate.from(fin)).getDays();
-			BigDecimal subtotal = vehiculo.get(0).getValor().multiply(new BigDecimal(dias));
+			BigDecimal subtotal = vehiculo.getValor().multiply(new BigDecimal(dias));
 			BigDecimal iva = subtotal.multiply(new BigDecimal(0.12));
-
 			BigDecimal total = subtotal.add(iva);
 
 			reserva.setSubtotal(subtotal);
 			reserva.setIva(iva);
 			reserva.setTotal(total);
+			System.out.println("Costo total de la reserva: " + total + "$");
 
 			this.reservaRepository.insertar(reserva);
 
 		}
 
 	}
-
+	
+	// BUSCAR DTO
 	public ReservaDTO retirarVehiculoReservado(Integer numeroReserva) {
 		// TODO Auto-generated method stub
 		ReservaDTO reservaDTO = this.reservaRepository.buscarPorNumero(numeroReserva);

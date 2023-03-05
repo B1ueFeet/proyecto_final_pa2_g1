@@ -13,15 +13,11 @@ public class VehiculoServiceImpl implements IVehiculoService {
 
 	@Autowired
 	private IVehiculoRepository vehiculoRepository;
-	
+
+	// CRUD
 	@Override
 	public void guardar(Vehiculo vehiculo) {
 		this.vehiculoRepository.insertar(vehiculo);
-	}
-
-	@Override
-	public List<Vehiculo> encontrarPorMarca(String marca) {
-		return this.vehiculoRepository.buscarPorMarca(marca);
 	}
 
 	@Override
@@ -39,6 +35,13 @@ public class VehiculoServiceImpl implements IVehiculoService {
 		this.vehiculoRepository.eliminar(id);
 	}
 
+	// BUSCAR MARCA
+	@Override
+	public List<Vehiculo> encontrarPorMarca(String marca) {
+		return this.vehiculoRepository.buscarMarca(marca);
+	}
+
+	// BORRAR D
 	@Override
 	public void borrarDisponible(Integer id, Boolean D) {
 		if (D) {
@@ -47,8 +50,10 @@ public class VehiculoServiceImpl implements IVehiculoService {
 			System.out.println("Vehículo no disponible, no es posible eliminar.");
 		}
 	}
-	public List<Vehiculo> buscar(String marca, String modelo) {
-		return this.vehiculoRepository.buscar(marca, modelo);
+
+	// BUSCAR MARCA, MODELO
+	public List<Vehiculo> buscarMarcaModelo(String marca, String modelo) {
+		return this.vehiculoRepository.buscarMarcaModelo(marca, modelo);
 
 	}
 
