@@ -29,6 +29,9 @@ public class Empleado {
 	
 	@Column(name = "empl_contrasenia")
 	private String contrasenia;
+	
+	@Column(name = "empl_usuario")
+	private String usuario;
 
 	// toString
 	@Override
@@ -76,6 +79,14 @@ public class Empleado {
 
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 	
