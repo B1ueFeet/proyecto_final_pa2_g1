@@ -74,7 +74,7 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 	public VehiculoDTO buscarPorPlaca(String placa) {
 
 		TypedQuery<VehiculoDTO> typedQuery = this.entityManager.createQuery(
-				"SELECT new rent.car.modelo.dto. VehiculoDTO(e.placa, e.modelo,"
+				"SELECT new rent.car.modelo.dto.VehiculoDTO(e.placa, e.modelo,"
 						+ "e.marca, e.anio, e.estado, e.valor) from Vehiculo e WHERE e.placa = :datoPlaca",
 				VehiculoDTO.class);
 
