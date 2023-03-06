@@ -28,7 +28,7 @@
 				</td>
 				<td>
 <!--					th:field="${reserva.inicio}"-->
-					<input type="datetime-local" id="fechaInicio" ></input>
+					<input type="datetime-local" id="fechaInicio" th:field="${reserva.inicio}"></input>
 				</td>
 			</tr>
 
@@ -37,7 +37,7 @@
 					<label>Fecha final</label>
 				</td>
 				<td>
-					<input type="datetime-local" id="fechaFin"></input>
+					<input type="datetime-local" id="fechaFin" th:field="${reserva.fin}"></input>
 				</td>
 			</tr>
 

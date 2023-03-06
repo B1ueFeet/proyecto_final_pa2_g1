@@ -1,6 +1,5 @@
 package rent.car.controller;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +26,7 @@ public class VeRegistroController {
 	@Autowired
 	private IReservaService iReservaService;
 	
+	
 	@GetMapping("/reservar")
 	public String paginaBuscarTodosVehiculos(Model model) {
 		List<Vehiculo> listaVehiculos = this.iVehiculoService.buscarTodos();
@@ -35,44 +35,19 @@ public class VeRegistroController {
 	}
 	
 	@GetMapping("/buscarplaca/{placa}")
-	public String buscarPorPlaca(@PathVariable("placa") String placa, Model model) {
+	public String buscarPorPlaca(@PathVariable("placa") String placa, Model model, Reserva reserva) {
 		Vehiculo vehiculo = this.iVehiculoService.buscarPlaca(placa);
-		System.out.println(vehiculo);
 		model.addAttribute("vehiculo", vehiculo);
+		model.addAttribute("reserva", reserva);
 		return "vistaSecundariaReserva";
 	}
 	
-//	//	public void reservar(String placa, String cedula, LocalDateTime inicio, LocalDateTime fin);
-//
-//	@PostMapping("/insertar/{cedula}")
-//	public String insertarReserva(@PathVariable("cedula") String cedula, Model model) {
-//		this.iReservaService.agregar(reserva);
-//		return "vistaReserva";
-//	}
 	
-//	@PostMapping("/insertar")
-//	public String insertarReserva(Reserva reserva) {
-//		this.iReservaService.agregar(reserva);
-//		return "vistaReserva";
-//	}
+	@PostMapping("/insertar")
+	public String insertarReserva(Reserva reserva) {
+		this.iReservaService.agregar(reserva);
+		return "vistaReserva";
+	}
 	
 
-//	@PostMapping("/insertar")
-//	public String insertarReserva(Model model) {
-//		Reserva reserva = new Reserva();
-//		model.addAttribute("reserva", reserva);
-//		this.iReservaService.agregar(reserva);
-//		return "vistaReserva";
-//	}
-//	
-	
-//	@GetMapping("/presentar")
-//	public String paginaBuscarTodosVehiculos(Model model) {
-//		List<Vehiculo> listaVehiculos = this.iVehiculoService.buscarTodos();
-//		List<String> placas = listaVehiculos.stream().map(v -> v.getPlaca()).collect(Collectors.toList());
-//		placas.forEach(System.out::println);
-//		
-//		model.addAttribute("vehiculos", listaVehiculos);
-//		return "vistaVehiPrueb";
-//	}
 }

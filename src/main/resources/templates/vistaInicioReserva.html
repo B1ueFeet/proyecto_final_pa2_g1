@@ -35,7 +35,7 @@
 					<!--Usa el verbo Get porque va a traer la vista de reserva, para poder reservar?-->
 					<form th:action="@{/clientes/buscarplaca/{placa}(placa=${vehiculo.placa})}" th:object="${vehiculo}"
 						th:method="GET">
-						<input type="submit" value="Reservar">
+						<input type="submit" value="PreReserva">
 					</form>
 				</td>
 			</tr>
@@ -46,3 +46,16 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
