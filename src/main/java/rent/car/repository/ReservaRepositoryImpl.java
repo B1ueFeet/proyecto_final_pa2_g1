@@ -1,5 +1,8 @@
 package rent.car.repository;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import jakarta.persistence.EntityManager;
@@ -40,11 +43,11 @@ public class ReservaRepositoryImpl implements IReservaRepository {
 	// Actualizr estado de reserva por el numero de reserva
 
 	@Override
-	public Integer actualizarEstado(Integer numeroReserva) {
+	public Integer actualizarEstado(String numeroReserva) {
 		// TODO Auto-generated method stub
-		Query query = this.manager.createNativeQuery("UPDATE rese_estado SET rese_estado = 'E' WHERE rese_id = :DatoId",
-				Reserva.class);
-		query.setParameter("datoId", numeroReserva);
+		Query query = this.manager.createNativeQuery(
+				"UPDATE rese_estado SET rese_estado = 'E' WHERE rese_numero = :datoNumero", Reserva.class);
+		query.setParameter("datoNumero", numeroReserva);
 
 		return query.executeUpdate();
 	}
@@ -52,13 +55,39 @@ public class ReservaRepositoryImpl implements IReservaRepository {
 	// Obtener ReservaDTO por numero de reserva
 
 	@Override
-	public ReservaDTO buscarPorNumero(Integer numeroReserva) {
+	public ReservaDTO buscarPorNumero(String numeroReserva) {
 		// TODO Auto-generated method stub
 		TypedQuery<ReservaDTO> typedQuery = this.manager.createQuery(
-				"SELECT new rent.car.modelo.dto.ReservaDTO(e.placa, e.modelo, e.estado, e.cedula) from Reserva e WHERE e.id = :datoId",
+				"SELECT new rent.car.modelo.dto.ReservaDTO(e.placa, e.modelo, e.estado, e.cedula) from Reserva e WHERE e.numero = :datoNumero",
 				ReservaDTO.class);
-		typedQuery.setParameter("datoId", numeroReserva);
+		typedQuery.setParameter("datoNumero", numeroReserva);
 		return typedQuery.getSingleResult();
+	}
+
+	// Obtener reserva por numero de reserva
+
+	@Override
+	public Reserva buscar(String numeroReserva) {
+		// TODO Auto-generated method stub
+
+		Query query = this.manager.createNativeQuery("SELECT * FROM reserva WHERE rese_numero = :datoNumero",
+				Reserva.class);
+		query.setParameter("datoNumero", numeroReserva);
+		return (Reserva) query.getSingleResult();
+	}
+
+	@Override
+	public List<Reserva> reportesReserva(LocalDateTime fechaInicial, LocalDateTime fechaFinal) {
+
+		TypedQuery<Reserva> query = this.manager
+				.createQuery("SELECT r.id, r.fechaInicio, r.fechaFin, r.descripcion, r.estado,"
+						+ " c.nombre, c.apellido, v.marca, v.modelo, v.patente"
+						+ " FROM Reserva r JOIN r.cliente c JOIN r.vehiculo v JOIN r.cobro co"
+						+ " WHERE co.fecha BETWEEN  :datoFechaInicio AND :datoFechaFinal", Reserva.class);
+		query.setParameter("datoFechaInicio", fechaInicial);
+		query.setParameter("datoFechaFinal", fechaFinal);
+
+		return query.getResultList();
 	}
 
 }

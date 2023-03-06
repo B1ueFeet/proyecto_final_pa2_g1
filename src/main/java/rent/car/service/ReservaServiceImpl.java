@@ -28,7 +28,10 @@ public class ReservaServiceImpl implements IReservaService {
 
 	@Autowired
 	private IClienteRepository clienteRepository;
-	
+
+	@Autowired
+	private ICobroService cobroService;
+
 	// CRUD
 	@Override
 	public void agregar(Reserva reserva) {
@@ -53,14 +56,14 @@ public class ReservaServiceImpl implements IReservaService {
 		// TODO Auto-generated method stub
 		this.reservaRepository.eliminar(id);
 	}
-	
+
 	// RESERVAR
 	@Override
-	public void reservar(String placa, String cedula, LocalDateTime inicio, LocalDateTime fin) {
+	public void reservar(String placa, String cedula, LocalDateTime inicio, LocalDateTime fin, String numeroTarjeta) {
 		// TODO Auto-generated method stub
 
 		Vehiculo vehiculo = this.vehiculoRepository.buscarPlaca(placa);
-		Cliente cliente= this.clienteRepository.BuscarCedula(cedula);
+		Cliente cliente = this.clienteRepository.BuscarCedula(cedula);
 
 		if (vehiculo.getEstado() == "ND") {
 			System.out.println("El Vehiculo esta ocupado en las fechas seleccionadas");
@@ -88,14 +91,17 @@ public class ReservaServiceImpl implements IReservaService {
 			reserva.setTotal(total);
 			System.out.println("Costo total de la reserva: " + total + "$");
 
+			// Guarda la reserva
 			this.reservaRepository.insertar(reserva);
 
+			// Reliza el cobro
+			this.cobroService.realizarCobro(numeroTarjeta, reserva);
 		}
 
 	}
-	
+
 	// BUSCAR DTO
-	public ReservaDTO retirarVehiculoReservado(Integer numeroReserva) {
+	public ReservaDTO retirarVehiculoReservado(String numeroReserva) {
 		// TODO Auto-generated method stub
 		ReservaDTO reservaDTO = this.reservaRepository.buscarPorNumero(numeroReserva);
 		reservaDTO.setFecha(this.reservaRepository.buscar(numeroReserva).getInicio() + " - "
@@ -104,6 +110,12 @@ public class ReservaServiceImpl implements IReservaService {
 		this.vehiculoRepository.actualizarEstado(reservaDTO.getPlaca());
 
 		return reservaDTO;
+	}
+
+	@Override
+	public List<Reserva> reporteReserva(LocalDateTime fechaInicio, LocalDateTime fechaFinal) {
+		// TODO Auto-generated method stub
+		return this.reservaRepository.reportesReserva(fechaInicio, fechaFinal);
 	}
 
 }

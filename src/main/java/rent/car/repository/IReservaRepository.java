@@ -1,5 +1,8 @@
 package rent.car.repository;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 import rent.car.modelo.Reserva;
 import rent.car.modelo.dto.ReservaDTO;
 
@@ -17,9 +20,18 @@ public interface IReservaRepository {
 
 	// Para actualizar el estado de reserva
 
-	public Integer actualizarEstado(Integer numeroReserva);
+	public Integer actualizarEstado(String numeroReserva);
 
 	// Obtener ReservaDTO por numero de reserva
 
-	public ReservaDTO buscarPorNumero(Integer numeroReserva);
+	public ReservaDTO buscarPorNumero(String numeroReserva);
+
+	// Buscar reserva por numero de reserva
+
+	public Reserva buscar(String numeroReserva);
+
+	// Reporte reservas
+
+	public List<Reserva> reportesReserva(LocalDateTime fechaInicial, LocalDateTime fechaFinal);
+	
 }

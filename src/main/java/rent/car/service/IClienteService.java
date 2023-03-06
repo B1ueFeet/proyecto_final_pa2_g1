@@ -3,6 +3,7 @@ package rent.car.service;
 import java.util.List;
 
 import rent.car.modelo.Cliente;
+import rent.car.modelo.dto.ClienteDTO;
 
 public interface IClienteService {
 
@@ -16,5 +17,8 @@ public interface IClienteService {
 	// BUSCAR APELLIDO
 
 	public List<Cliente> buscarApellido(String apellido);
+
+	// Clientes VIP
+	public List<ClienteDTO> clientesVIP();
 
 }

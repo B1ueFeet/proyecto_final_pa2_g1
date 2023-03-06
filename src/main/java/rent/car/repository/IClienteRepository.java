@@ -3,6 +3,7 @@ package rent.car.repository;
 import java.util.List;
 
 import rent.car.modelo.Cliente;
+import rent.car.modelo.dto.ClienteDTO;
 
 public interface IClienteRepository {
 
@@ -18,7 +19,11 @@ public interface IClienteRepository {
 
 	// BUSCAR APELLIDO
 	public List<Cliente> buscarApellido(String apellido);
-	
+
 	// BUSCAR CEDULA
 	public Cliente BuscarCedula(String Cedula);
+
+	//Clientes VIP
+	
+	public List<ClienteDTO> buscarClientes();
 }
