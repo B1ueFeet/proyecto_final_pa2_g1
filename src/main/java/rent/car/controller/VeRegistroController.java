@@ -39,7 +39,7 @@ public class VeRegistroController {
 		Vehiculo vehiculo = this.iVehiculoService.buscarPlaca(placa);
 		model.addAttribute("vehiculo", vehiculo);
 		model.addAttribute("reserva", reserva);
-		return "vistaSecundariaReserva";
+		return "vistaSecundariaReserva2";
 	}
 	
 	
