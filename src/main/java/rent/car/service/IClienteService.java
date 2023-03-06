@@ -16,5 +16,8 @@ public interface IClienteService {
 	// BUSCAR APELLIDO
 
 	public List<Cliente> buscarApellido(String apellido);
+	
+	// VERIFICAR USUARIO
+	public Boolean autenticar(String user, String pass);
 
 }

@@ -10,6 +10,7 @@ import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import rent.car.modelo.Cliente;
+import rent.car.modelo.Empleado;
 
 @Repository
 @Transactional
@@ -58,6 +59,22 @@ public class ClienteRepositoryImpl implements IClienteRepository {
 				.createQuery("SELECT c FROM Cliente c WHERE c.cedula= :datoCedula", Cliente.class);
 		query.setParameter("datoCedula", Cedula);
 		return query.getSingleResult();
+	}
+	
+	// BUSCAR USER
+	@Override
+	public Cliente buscarUser(String user) {
+		TypedQuery< Cliente> query = this.entityManager.createQuery("SELECT c FROM Cliente c WHERE c.usuario = :datoUsuario",Cliente.class);
+		query.setParameter("datoUsuario", user);
+		
+		try {
+			return query.getSingleResult();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.err.println("No se encontro el usuario");
+			return null;
+			
+		}
 	}
 
 }

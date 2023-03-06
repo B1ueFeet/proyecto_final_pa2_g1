@@ -3,6 +3,7 @@ package rent.car.repository;
 import java.util.List;
 
 import rent.car.modelo.Cliente;
+import rent.car.modelo.Empleado;
 
 public interface IClienteRepository {
 
@@ -21,4 +22,8 @@ public interface IClienteRepository {
 	
 	// BUSCAR CEDULA
 	public Cliente BuscarCedula(String Cedula);
+	
+	// BUSCAR POR USERNAME
+	public Cliente buscarUser(String user);
+
 }

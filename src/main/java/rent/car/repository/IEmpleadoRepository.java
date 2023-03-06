@@ -10,4 +10,7 @@ public interface IEmpleadoRepository {
 
 	public Empleado buscar(Integer id);
 
+	// BUSCAR POR USERNAME
+	public Empleado buscarUser(String user);
+
 }

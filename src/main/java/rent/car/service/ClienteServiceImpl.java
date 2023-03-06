@@ -38,4 +38,23 @@ public class ClienteServiceImpl implements IClienteService {
 		return this.clienteRepository.buscarApellido(apellido);
 	}
 
+	@Override
+	public Boolean autenticar(String user, String pass) {
+		Cliente empleado = this.clienteRepository.buscarUser(user);
+		System.out.println("Encontro el usuario");
+		if (empleado == null) {
+			return false;
+		} else {
+			System.out.println(empleado.getContrasenia());
+			System.out.println(pass);
+			if (empleado.getContrasenia().equals(pass)) {
+				System.out.println("si es la contraseña");
+				return true;
+			} else {
+				System.out.println("no es la contraseña");
+				return false;
+			}
+		}
+	}
+
 }
