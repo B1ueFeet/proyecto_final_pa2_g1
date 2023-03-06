@@ -16,6 +16,8 @@ public interface IClienteRepository {
 
 	public void actualizar(Cliente cliente);
 
+	public List<Cliente> buscarTodos();
+	
 	// BUSCAR APELLIDO
 	public List<Cliente> buscarApellido(String apellido);
 	

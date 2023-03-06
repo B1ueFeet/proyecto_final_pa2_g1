@@ -12,7 +12,8 @@ public interface IClienteService {
 	public void actualizar(Cliente cliente);
 
 	public void borrar(Integer id);
-
+	
+	public List<Cliente> encontrarTodos();
 	// BUSCAR APELLIDO
 
 	public List<Cliente> buscarApellido(String apellido);

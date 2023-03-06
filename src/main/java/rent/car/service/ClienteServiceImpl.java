@@ -38,4 +38,10 @@ public class ClienteServiceImpl implements IClienteService {
 		return this.clienteRepository.buscarApellido(apellido);
 	}
 
+	@Override
+	public List<Cliente> encontrarTodos() {
+		// TODO Auto-generated method stub
+		return this.clienteRepository.buscarTodos();
+	}
+
 }
