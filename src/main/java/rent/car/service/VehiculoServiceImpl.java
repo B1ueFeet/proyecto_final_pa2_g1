@@ -57,4 +57,14 @@ public class VehiculoServiceImpl implements IVehiculoService {
 
 	}
 
+	@Override
+	public List<Vehiculo> buscarTodos() {
+		return this.vehiculoRepository.buscarTodos();
+	}
+
+	@Override
+	public Vehiculo buscarPlaca(String placa) {
+		return this.vehiculoRepository.buscarPlaca(placa);
+	}
+
 }

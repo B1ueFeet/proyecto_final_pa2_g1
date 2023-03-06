@@ -8,20 +8,24 @@ public interface IVehiculoService {
 
 	// CRUD
 	public void guardar(Vehiculo vehiculo);
-
 	public Vehiculo encontrar(Integer id);
-
 	public void actualizar(Vehiculo vehiculo);
-
 	public void borrar(Integer id);
 	
 	// BUSCAR MARCA
 	public List<Vehiculo> encontrarPorMarca(String marca);
 	
-	// BORRAR D
+	// BORRAR DISPONIBLE
 	public void borrarDisponible(Integer id, Boolean D);
 	
 	// BUSCAR MARCA, MODELO
 	public List<Vehiculo> buscarMarcaModelo(String marca, String modelo);
+	
+	// BUSCAR TODOS:
+	public  List<Vehiculo> buscarTodos();
+	
+	// BUSCAR PLACA
+	public Vehiculo buscarPlaca(String placa);
+
 
 }
