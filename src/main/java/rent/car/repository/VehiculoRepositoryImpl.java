@@ -85,7 +85,6 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 
 	// BUSCAR PLACA
 	public Vehiculo buscarPlaca(String placa) {
-		// TODO Auto-generated method stub
 		TypedQuery<Vehiculo> query = this.entityManager.createQuery("SELECT e from Vehiculo e WHERE e.placa = :datoPlaca",
 				Vehiculo.class);
 		query.setParameter("datoPlaca", placa);
@@ -93,4 +92,12 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 
 	}
 
+	@Override
+	public List<Vehiculo> buscarTodos() {
+		Query query = this.entityManager.createQuery("SELECT v FROM Vehiculo v");
+		return query.getResultList();
+	}
+
+	
+	
 }

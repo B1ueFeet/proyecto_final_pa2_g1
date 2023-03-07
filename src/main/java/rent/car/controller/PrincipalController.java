@@ -3,12 +3,9 @@ package rent.car.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import rent.car.modelo.Cliente;
-import rent.car.service.IClienteService;
 import rent.car.service.IEmpleadoService;
 
 @Controller
@@ -19,8 +16,6 @@ import rent.car.service.IEmpleadoService;
 public class PrincipalController {
 
 	@Autowired
-	private IClienteService clienteService;
-	@Autowired 
 	private IEmpleadoService empleadoService;
 
 	@GetMapping("")
@@ -28,16 +23,10 @@ public class PrincipalController {
 		return "vistaInicioSesion";
 	}
 
-	@GetMapping("/sesion") 
+	@GetMapping("/sesion")
 	public String paginaInicio(Cliente cliente) {
 
 		return this.empleadoService.siguienteVista(cliente.getUsuario(), cliente.getContrasenia());
-	}
-
-	@PostMapping("/insertar")
-	public String insertarCliente(Cliente cliente) {
-		this.clienteService.registrar("E", cliente);
-		return "guardado";
 	}
 
 }
