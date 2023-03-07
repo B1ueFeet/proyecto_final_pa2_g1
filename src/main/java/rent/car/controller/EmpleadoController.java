@@ -1,13 +1,22 @@
 package rent.car.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jakarta.websocket.server.PathParam;
 import rent.car.modelo.Cliente;
+import rent.car.modelo.Vehiculo;
 import rent.car.service.IClienteService;
+import rent.car.service.IVehiculoService;
 
 @Controller
 @RequestMapping("/empleados")
@@ -18,6 +27,9 @@ public class EmpleadoController {
 
 	@Autowired
 	private IClienteService clienteService;
+	
+	@Autowired
+	private IVehiculoService vehiculoService;
 
 	@GetMapping("/inicio")
 	public String inicio() {
@@ -35,5 +47,46 @@ public class EmpleadoController {
 		this.clienteService.registrar("E", cliente);
 		return "guardado";
 	}
+	
+	
+	@GetMapping("/buscar")
+	public String buscarClientes(Model model) {
+		List< Cliente> lista = this.clienteService.encontrarTodos();
+		model.addAttribute("empleados",lista);
+		return "vistaListaEmpleadoCliente";
+	}
+    @DeleteMapping("/borrar/{id}")
+    public String borrarCliente(@PathVariable("id") Integer id) {
+    	this.clienteService.borrar(id);
+    	return "redirect:/empleados/buscar";
+    	
+    }
+    
+    @GetMapping("/buscarPorApellido/{apellido}")
+    public String buscarPorApellido(@PathVariable("apellido")String apellido, Model model) {
+    	Cliente cliente =(Cliente) this.clienteService.buscarApellido(apellido);
+    	model.addAttribute("apellido", cliente);
+    	return "vistaActualizarEmpleadoCliente";
+    }
+    @PutMapping("actualizar/{apellido}")
+    public String buscarPorApellido(@PathVariable("apellido")String apellido,Cliente cliente) {
+    	cliente.setApellido(apellido);
+    	this.clienteService.buscarApellido(apellido);
+    	return "redirect:/empleados/buscar";
+    	
+    	
+    }
+	//Vehiculo
+	
+	@GetMapping("/inicio/registrovehi") // va a tomar referencia a la raiz de nuestra aplicacion
+	public String paginaInicio(Vehiculo vehiculo) {
 
+		return "vistaRegistroVehiculo";
+	}
+	
+	@PostMapping("/insertarV")
+	public String insertarVehiculo(Vehiculo vehiculo) {
+		this.vehiculoService.guardar(vehiculo);
+		return "guardado";
+	}
 }

@@ -12,7 +12,7 @@
 
 <body style="background-color:rgb(156, 221, 228); padding:25px;"> 
 
-<h3 style="color:crimson;">Registro Usuario</h3>
+	<h3 style="color:crimson;">Registro Usuario</h3>
 	<form th:action="@{/empleados/insertar}" th:object="${cliente}" method="POST">
 		 <table>
 			<tr>
@@ -41,7 +41,7 @@
 					<input type="text" id="apellido" th:field="${cliente.apellido}">
 				</td>
 			</tr>
-			
+
 			<tr>
 				<td>
 					<label>Usuario</label>
@@ -68,7 +68,7 @@
 
 				</td>
 			</tr>
-			
+
 			<tr>
 				<td>
 					<label>Genero:</label>
@@ -82,11 +82,17 @@
 		</table>
 		<input class="btn btn-primary" type="submit" value="Registrar">
 		<li class="nav-item">
-		<a href="/empleados/inicio"> Volver Atrás</a>
-	    </li>
+			<a href="/empleados/inicio"> Volver Atrás</a>
+		</li>
+		
 	</form>
 	
-	
+		<li class="nav-item">
+			<a href="/empleados/buscar"> Ver Clientes registrados</a>
+		</li>
+
+
+
 </body>
 
 </html>

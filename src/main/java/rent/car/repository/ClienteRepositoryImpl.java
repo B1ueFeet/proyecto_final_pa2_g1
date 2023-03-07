@@ -77,4 +77,11 @@ public class ClienteRepositoryImpl implements IClienteRepository {
 		}
 	}
 
+	@Override
+	public List<Cliente> buscarTodos() {
+		// TODO Auto-generated method stub
+		Query query =this.entityManager.createQuery("select e from Cliente e");
+		return query.getResultList();
+	}
+
 }

@@ -57,4 +57,9 @@ public class ClienteServiceImpl implements IClienteService {
 		}
 	}
 
+	public List<Cliente> encontrarTodos() {
+		// TODO Auto-generated method stub
+		return this.clienteRepository.buscarTodos();
+	}
+
 }
