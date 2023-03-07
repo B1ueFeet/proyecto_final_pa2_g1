@@ -25,5 +25,5 @@ public interface IClienteRepository {
 
 	//Clientes VIP
 	
-	public List<ClienteDTO> buscarClientes();
+	public List<Cliente> buscarClientes();
 }

@@ -10,7 +10,6 @@ import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import rent.car.modelo.Cliente;
-import rent.car.modelo.dto.ClienteDTO;
 
 @Repository
 @Transactional
@@ -63,12 +62,10 @@ public class ClienteRepositoryImpl implements IClienteRepository {
 
 	// Clientes VIP
 	@Override
-	public List<ClienteDTO> buscarClientes() {
+	public List<Cliente> buscarClientes() {
 		// TODO Auto-generated method stub
-		TypedQuery<ClienteDTO> query = this.entityManager
-				.createQuery("SELECT NEW rent.car.modelo.dto.ClienteDTO(c.cedula, c.nombre, c.apellido,"
-						+ " r.iva, SUM(r.total)) FROM Cliente c JOIN c.reserva r"
-						+ "GROUP BY  c.cedula, c.nombre, c.apellido, r.iva", ClienteDTO.class);
+		TypedQuery<Cliente> query = this.entityManager.createQuery("SELECT * FROM Cliente c FETCH c.reserva r",
+				Cliente.class);
 		return query.getResultList();
 	}
 

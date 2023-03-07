@@ -58,7 +58,9 @@ public class ReservaRepositoryImpl implements IReservaRepository {
 	public ReservaDTO buscarPorNumero(String numeroReserva) {
 		// TODO Auto-generated method stub
 		TypedQuery<ReservaDTO> typedQuery = this.manager.createQuery(
-				"SELECT new rent.car.modelo.dto.ReservaDTO(e.placa, e.modelo, e.estado, e.cedula) from Reserva e WHERE e.numero = :datoNumero",
+				"SELECT new rent.car.modelo.dto.ReservaDTO(v.placa, v.modelo, e.estado, e.numero,c.cedula) from Reserva e "
+				+ "JOIN e.cliente c JOIN e.vehiculo v "
+				+ "WHERE e.numero = :datoNumero",
 				ReservaDTO.class);
 		typedQuery.setParameter("datoNumero", numeroReserva);
 		return typedQuery.getSingleResult();
@@ -80,9 +82,8 @@ public class ReservaRepositoryImpl implements IReservaRepository {
 	public List<Reserva> reportesReserva(LocalDateTime fechaInicial, LocalDateTime fechaFinal) {
 
 		TypedQuery<Reserva> query = this.manager
-				.createQuery("SELECT r.id, r.fechaInicio, r.fechaFin, r.descripcion, r.estado,"
-						+ " c.nombre, c.apellido, v.marca, v.modelo, v.patente"
-						+ " FROM Reserva r JOIN r.cliente c JOIN r.vehiculo v JOIN r.cobro co"
+				.createQuery("SELECT *"
+						+ " FROM Reserva e FETCH e.cliente c FETCH e.vehiculo v FETCH e.cobro co"
 						+ " WHERE co.fecha BETWEEN  :datoFechaInicio AND :datoFechaFinal", Reserva.class);
 		query.setParameter("datoFechaInicio", fechaInicial);
 		query.setParameter("datoFechaFinal", fechaFinal);

@@ -19,6 +19,6 @@ public interface IClienteService {
 	public List<Cliente> buscarApellido(String apellido);
 
 	// Clientes VIP
-	public List<ClienteDTO> clientesVIP();
+	public List<Cliente> clientesVIP();
 
 }

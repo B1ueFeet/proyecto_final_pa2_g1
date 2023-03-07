@@ -93,4 +93,10 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 
 	}
 
+	@Override
+	public List<Vehiculo> reporteVehiculo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
