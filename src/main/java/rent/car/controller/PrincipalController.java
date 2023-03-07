@@ -20,7 +20,7 @@ public class PrincipalController {
 
 	@GetMapping("")
 	public String inicio(Cliente cliente) {
-		return "vistaInicioSesion";
+		return "vInicioSesion";
 	}
 
 	@GetMapping("/sesion")

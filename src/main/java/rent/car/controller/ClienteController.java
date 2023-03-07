@@ -19,7 +19,7 @@ import rent.car.service.IVehiculoService;
 
 @Controller
 @RequestMapping("/clientes")
-public class VeRegistroController {
+public class ClienteController {
 
 	@Autowired
 	private IVehiculoService iVehiculoService;
@@ -34,7 +34,7 @@ public class VeRegistroController {
 	public String paginaBuscarTodosVehiculos(Model model) {
 		List<Vehiculo> listaVehiculos = this.iVehiculoService.buscarTodos();
 		model.addAttribute("vehiculos", listaVehiculos);
-		return "vistaInicioReserva";
+		return "vListaReserva";
 	}
 
 	@GetMapping("/buscarplaca/{placa}")
@@ -53,7 +53,7 @@ public class VeRegistroController {
 
 	@GetMapping("/registro")
 	public String paginaInicio(Cliente cliente) {
-		return "vGuardarCC";
+		return "vRegistroClienteC";
 	}
 
 	@PostMapping("/insertar/cliente")

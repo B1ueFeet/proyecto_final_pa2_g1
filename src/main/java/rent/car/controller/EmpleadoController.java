@@ -37,13 +37,13 @@ public class EmpleadoController {
 
 	@GetMapping("/inicio")
 	public String inicio() {
-		return "vistaInicioEmpleado";
+		return "vInicioE";
 	}
 
 	@GetMapping("/inicio/registro") // va a tomar referencia a la raiz de nuestra aplicacion
 	public String paginaInicio(Cliente cliente) {
 
-		return "vistaGClienteEmpleado";
+		return "vRegistroClienteE";
 	}
 
 	@PostMapping("/insertar")
@@ -56,7 +56,7 @@ public class EmpleadoController {
 	public String buscarClientes(Model model) {
 		List<Cliente> lista = this.clienteService.encontrarTodos();
 		model.addAttribute("empleados", lista);
-		return "vistaListaEmpleadoCliente";
+		return "vListaEmpleado";
 	}
 
 	@DeleteMapping("/borrar/{id}")
@@ -71,7 +71,7 @@ public class EmpleadoController {
 	public String buscarPorApellido(@PathVariable("apellido") String apellido, Model model) {
 		ArrayList<Cliente> cliente = (ArrayList<Cliente>) this.clienteService.buscarApellido(apellido);
 		model.addAttribute("apellido", cliente);
-		return "vistaActualizarEmpleadoCliente";
+		return "vActualizarEC";
 	}
 
 	@PutMapping("actualizar/{apellido}")
@@ -85,7 +85,7 @@ public class EmpleadoController {
 
 	@GetMapping("/inicio/registrovehi") // va a tomar referencia a la raiz de nuestra aplicacion
 	public String paginaInicio(Vehiculo vehiculo) {
-		return "vistaRegistroVehiculo";
+		return "vRegistroVehiculo";
 	}
 
 	@PostMapping("/insertarV")
@@ -98,7 +98,7 @@ public class EmpleadoController {
 	public String buscarVehiculo(Model model) {
 		List<Vehiculo> lista = this.vehiculoService.encontrarTodos();
 		model.addAttribute("empleados", lista);
-		return "vistaListaVehiculoDH";
+		return "vListaVehiculo";
 	}
 
 	@DeleteMapping("/borrarV/{id}")

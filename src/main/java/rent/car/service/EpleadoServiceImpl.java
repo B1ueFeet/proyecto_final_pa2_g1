@@ -45,12 +45,12 @@ public class EpleadoServiceImpl implements IEmpleadoService {
 	}
 
 	public String siguienteVista(String user, String pass) {
-		if(this.autenticar(user, pass)) {
-			return "vistaInicioEmpleado";
-		}else if(this.clienteService.autenticar(user, pass)) {
-			return "vistaInicioCliente";
-		}else {
-			return "redirect:/inicio";			
+		if (this.autenticar(user, pass)) {
+			return "vInicioE";
+		} else if (this.clienteService.autenticar(user, pass)) {
+			return "vInicioC";
+		} else {
+			return "redirect:/inicio";
 		}
 	}
 
