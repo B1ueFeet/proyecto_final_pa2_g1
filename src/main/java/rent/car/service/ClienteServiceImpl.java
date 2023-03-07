@@ -62,4 +62,12 @@ public class ClienteServiceImpl implements IClienteService {
 		return this.clienteRepository.buscarTodos();
 	}
 
+	public List<Cliente> clientesVIP() {
+		// TODO Auto-generated method stub
+		List<Cliente> clientes = this.clienteRepository.buscarClientes();
+
+		return clientes;
+
+	}
+
 }

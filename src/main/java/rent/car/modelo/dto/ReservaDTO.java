@@ -8,27 +8,30 @@ public class ReservaDTO {
 
 	private String estado;
 
+	private String numero;
+
 	private String fecha;
 
 	private String cedula;
 
 	public ReservaDTO() {
-		
+
 	}
 
-	public ReservaDTO(String placa, String modelo, String estado, String cedula) {
+	public ReservaDTO(String placa, String modelo, String estado, String numero, String cedula) {
 		super();
 		this.placa = placa;
 		this.modelo = modelo;
 		this.estado = estado;
+		this.numero = numero;
 		this.cedula = cedula;
 	}
 
 	// To String
 	@Override
 	public String toString() {
-		return "ReservaDTO [placa=" + placa + ", modelo=" + modelo + ", estado=" + estado + ", fecha=" + fecha
-				+ ", cedula=" + cedula + "]";
+		return "ReservaDTO [placa=" + placa + ", modelo=" + modelo + ", estado=" + estado + ", numero=" + numero
+				+ ", fecha=" + fecha + ", cedula=" + cedula + "]";
 	}
 
 	// SET Y GET
@@ -72,4 +75,11 @@ public class ReservaDTO {
 		this.cedula = cedula;
 	}
 
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
 }

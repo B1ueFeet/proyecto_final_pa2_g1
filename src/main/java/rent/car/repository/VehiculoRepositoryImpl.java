@@ -94,9 +94,16 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 	}
 
 	@Override
+
 	public List<Vehiculo> buscarTodos() {
 		Query query = this.entityManager.createQuery("SELECT v FROM Vehiculo v");
 		return query.getResultList();
+	}
+
+	public List<Vehiculo> reporteVehiculo() {
+		// TODO Auto-generated method stub
+		return null;
+
 	}
 
 }

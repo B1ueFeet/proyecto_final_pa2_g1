@@ -33,4 +33,6 @@ public interface IVehiculoRepository {
 
 	public List<Vehiculo> buscarTodos();
 
+	public List<Vehiculo> reporteVehiculo();
+
 }

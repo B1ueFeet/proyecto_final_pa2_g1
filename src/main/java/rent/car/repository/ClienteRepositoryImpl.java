@@ -85,4 +85,13 @@ public class ClienteRepositoryImpl implements IClienteRepository {
 		return query.getResultList();
 	}
 
+	// Clientes VIP
+	@Override
+	public List<Cliente> buscarClientes() {
+		// TODO Auto-generated method stub
+		TypedQuery<Cliente> query = this.entityManager.createQuery("SELECT * FROM Cliente c FETCH c.reserva r",
+				Cliente.class);
+		return query.getResultList();
+	}
+
 }

@@ -6,7 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.DeleteMapping;
+=======
+>>>>>>> refs/remotes/origin/willan
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +20,11 @@ import jakarta.websocket.server.PathParam;
 import rent.car.modelo.Cliente;
 import rent.car.modelo.Vehiculo;
 import rent.car.service.IClienteService;
+<<<<<<< HEAD
 import rent.car.service.IVehiculoService;
+=======
+import rent.car.service.IReservaService;
+>>>>>>> refs/remotes/origin/willan
 
 @Controller
 @RequestMapping("/empleados")
@@ -31,6 +38,9 @@ public class EmpleadoController {
 	
 	@Autowired
 	private IVehiculoService vehiculoService;
+
+	@Autowired
+	private IReservaService reservaService;
 
 	@GetMapping("/inicio")
 	public String inicio() {
@@ -83,6 +93,7 @@ public class EmpleadoController {
 	@GetMapping("/inicio/registrovehi") // va a tomar referencia a la raiz de nuestra aplicacion
 	public String paginaInicio(Vehiculo vehiculo) {
 
+<<<<<<< HEAD
 		return "vistaRegistroVehiculo";
 	}
 	
@@ -105,4 +116,12 @@ public class EmpleadoController {
 		
 		return "redirect:/empleados/buscarV";
 	}
+=======
+	@GetMapping("/reporteReservas")
+	public String reporteReservas(Model model) {
+		//this.reservaService.reporteReserva(null, null);
+		return "vistaReporteReserva";
+	}
+
+>>>>>>> refs/remotes/origin/willan
 }

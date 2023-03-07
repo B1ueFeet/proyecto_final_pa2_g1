@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -22,21 +23,25 @@ public class Reserva {
 	@SequenceGenerator(name = "seq_rese", sequenceName = "seq_rese", allocationSize = 1)
 	@Column(name = "rese_id")
 	private Integer id;
+
+	@Column(name = "rese_numero")
+	private String numero;
+
 	@Column(name = "rese_fecha_inicio")
 	private LocalDateTime inicio;
-	
+
 	@Column(name = "rese_fecha_fin")
 	private LocalDateTime fin;
-	
+
 	@Column(name = "rese_subtotal")
 	private BigDecimal subtotal;
-	
+
 	@Column(name = "rese_iva")
 	private BigDecimal iva;
-	
+
 	@Column(name = "rese_total")
 	private BigDecimal total;
-	
+
 	@Column(name = "rese_estado")
 	private String estado;
 
@@ -49,6 +54,8 @@ public class Reserva {
 	@JoinColumn(name = "rese_id_vehiculo")
 	private Vehiculo vehiculo;
 
+	@OneToOne(mappedBy = "reserva")
+	private Cobro cobro;
 	// GETTER & SETTER
 	public Integer getId() {
 		return id;
@@ -122,10 +129,20 @@ public class Reserva {
 		this.vehiculo = vehiculo;
 	}
 
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
 	// TO STRING
 	@Override
 	public String toString() {
-		return "Reserva [id=" + id + ", inicio=" + inicio + ", fin=" + fin + ", valor=";
+		return "Reserva [id=" + id + ", numero=" + numero + ", inicio=" + inicio + ", fin=" + fin + ", subtotal="
+				+ subtotal + ", iva=" + iva + ", total=" + total + ", estado=" + estado + ", cliente=" + cliente
+				+ ", vehiculo=" + vehiculo + "]";
 	}
 
 }

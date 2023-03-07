@@ -3,6 +3,7 @@ package rent.car.service;
 import java.util.List;
 
 import rent.car.modelo.Cliente;
+import rent.car.modelo.dto.ClienteDTO;
 
 public interface IClienteService {
 
@@ -20,5 +21,8 @@ public interface IClienteService {
 	
 	// VERIFICAR USUARIO
 	public Boolean autenticar(String user, String pass);
+
+	// Clientes VIP
+	public List<Cliente> clientesVIP();
 
 }
