@@ -111,7 +111,7 @@ public class EmpleadoController {
 	@GetMapping("/reporteReservas")
 	public String reporteReservas(Model model) {
 		// this.reservaService.reporteReserva(null, null);
-		return "vistaReporteReserva";
+		return "vReporteReserva";
 	}
 
 }
