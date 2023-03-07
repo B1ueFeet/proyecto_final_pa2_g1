@@ -58,6 +58,7 @@ public class VehiculoServiceImpl implements IVehiculoService {
 	}
 
 	@Override
+
 	public List<Vehiculo> buscarTodos() {
 		return this.vehiculoRepository.buscarTodos();
 	}
@@ -65,6 +66,12 @@ public class VehiculoServiceImpl implements IVehiculoService {
 	@Override
 	public Vehiculo buscarPlaca(String placa) {
 		return this.vehiculoRepository.buscarPlaca(placa);
+	}
+
+	public List<Vehiculo> encontrarTodos() {
+		// TODO Auto-generated method stub
+		return this.vehiculoRepository.buscarTodos();
+
 	}
 
 }

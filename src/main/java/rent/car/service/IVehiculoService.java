@@ -28,4 +28,5 @@ public interface IVehiculoService {
 	public Vehiculo buscarPlaca(String placa);
 
 
+	public List<Vehiculo> encontrarTodos();
 }

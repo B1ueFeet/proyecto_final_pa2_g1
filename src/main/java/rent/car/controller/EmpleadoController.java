@@ -1,5 +1,6 @@
 package rent.car.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,8 +64,9 @@ public class EmpleadoController {
     }
     
     @GetMapping("/buscarPorApellido/{apellido}")
+    
     public String buscarPorApellido(@PathVariable("apellido")String apellido, Model model) {
-    	Cliente cliente =(Cliente) this.clienteService.buscarApellido(apellido);
+    	ArrayList<Cliente> cliente =(ArrayList<Cliente>) this.clienteService.buscarApellido(apellido);
     	model.addAttribute("apellido", cliente);
     	return "vistaActualizarEmpleadoCliente";
     }
@@ -88,5 +90,19 @@ public class EmpleadoController {
 	public String insertarVehiculo(Vehiculo vehiculo) {
 		this.vehiculoService.guardar(vehiculo);
 		return "guardado";
+	}
+	
+	@GetMapping("/buscarV")
+	public String buscarVehiculo(Model model) {
+		List<Vehiculo> lista = this.vehiculoService.encontrarTodos();
+		model.addAttribute("empleados",lista);
+		return "vistaListaVehiculoDH";
+	}
+	
+	@DeleteMapping("/borrarV/{id}")
+	public String borrarPersona(@PathVariable("id") Integer id) {
+		 this.vehiculoService.borrar(id);
+		
+		return "redirect:/empleados/buscarV";
 	}
 }

@@ -37,7 +37,8 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 
 	@Override
 	public void eliminar(Integer id) {
-		this.entityManager.remove(this.buscar(id));
+		Vehiculo vehi = this.buscar(id);
+		this.entityManager.remove(vehi);
 	}
 
 	// BUSCAR MARCA
@@ -85,8 +86,8 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 
 	// BUSCAR PLACA
 	public Vehiculo buscarPlaca(String placa) {
-		TypedQuery<Vehiculo> query = this.entityManager.createQuery("SELECT e from Vehiculo e WHERE e.placa = :datoPlaca",
-				Vehiculo.class);
+		TypedQuery<Vehiculo> query = this.entityManager
+				.createQuery("SELECT e from Vehiculo e WHERE e.placa = :datoPlaca", Vehiculo.class);
 		query.setParameter("datoPlaca", placa);
 		return query.getSingleResult();
 
@@ -98,6 +99,4 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 		return query.getResultList();
 	}
 
-	
-	
 }
