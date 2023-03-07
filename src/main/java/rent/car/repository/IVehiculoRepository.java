@@ -30,5 +30,7 @@ public interface IVehiculoRepository {
 
 	// Obtener un vehiculoDTO por placa
 	public VehiculoDTO buscarPorPlaca(String placa);
+	
+	public List<Vehiculo> buscarTodos();
 
 }

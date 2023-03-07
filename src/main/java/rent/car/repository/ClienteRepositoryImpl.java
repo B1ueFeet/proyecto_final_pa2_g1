@@ -27,7 +27,8 @@ public class ClienteRepositoryImpl implements IClienteRepository {
 
 	@Override
 	public void eliminar(Integer id) {
-		this.entityManager.remove(this.buscar(id));
+		Cliente cli = this.buscar(id);
+		this.entityManager.remove(cli);
 	}
 
 	@Override

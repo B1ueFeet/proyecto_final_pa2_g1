@@ -24,4 +24,5 @@ public interface IVehiculoService {
 	// BUSCAR MARCA, MODELO
 	public List<Vehiculo> buscarMarcaModelo(String marca, String modelo);
 
+	public List<Vehiculo> encontrarTodos();
 }

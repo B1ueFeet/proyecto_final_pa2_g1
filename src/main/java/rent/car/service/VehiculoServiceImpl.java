@@ -57,4 +57,10 @@ public class VehiculoServiceImpl implements IVehiculoService {
 
 	}
 
+	@Override
+	public List<Vehiculo> encontrarTodos() {
+		// TODO Auto-generated method stub
+		return this.vehiculoRepository.buscarTodos();
+	}
+
 }

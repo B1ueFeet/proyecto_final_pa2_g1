@@ -37,7 +37,8 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 
 	@Override
 	public void eliminar(Integer id) {
-		this.entityManager.remove(this.buscar(id));
+		Vehiculo vehi =this.buscar(id);
+		this.entityManager.remove(vehi);
 	}
 
 	// BUSCAR MARCA
@@ -91,6 +92,14 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 		query.setParameter("datoPlaca", placa);
 		return query.getSingleResult();
 
+	}
+
+	@Override
+	public List<Vehiculo> buscarTodos() {
+		// TODO Auto-generated method stub
+		
+		Query query= this.entityManager.createQuery("select e from Vehiculo e");
+		return query.getResultList();
 	}
 
 }
