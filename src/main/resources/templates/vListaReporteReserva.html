@@ -16,26 +16,31 @@
 	<table class="table table-success table-striped">
 		<thead>
 			<tr>
+				<th>Numero de Reserva</th>
+				<th>Fecha de inicio</th>
+				<th>Fecha de finalización</th>
+				<th>Total</th>
+				<th>Estado</th>
 				<th>Cedula</th>
 				<th>Nombre</th>
-				<th>Apellido</th>
-				<th>Fecha de Nacimiento</th>
-				<th>Genero</th>
-				<th>Registro</th>
-				<th>Total IVA</th>
-				<th>Total Reservas</th>
+				<th>Placa</th>
+				<th>Modelo</th>
+				<th>Valor por dia</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="cliente:${empleados}">
-				<td th:text="${cliente.cedula}"></td>
-				<td th:text="${cliente.nombre}"></td>
-				<td th:text="${cliente.apellido}"></td>
-				<td th:text="${cliente.fechaNacimiento}"></td>
-				<td th:text="${cliente.genero}"></td>
-				<td th:text="${cliente.registro}"></td>
-				<td th:text="${cliente.reserva.getIva}"></td>
-				<td th:text="${cliente.reserva.getTotal}"></td>
+			<tr th:each="reserva:${reservas}">
+				<td th:text="${reserva.numero}"></td>
+				<td th:text="${reserva.inicio}"></td>
+				<td th:text="${reserva.fin}"></td>
+				<td th:text="${reserva.total}"></td>
+				<td th:text="${reserva.estado}"></td>
+				<td th:text="${reserva.cliente.cedula}"></td>
+				<td th:text="${reserva.cliente.nombre}"></td>
+				<td th:text="${reserva.vehiculo.placa}"></td>
+				<td th:text="${reserva.vehiculo.modelo}"></td>
+				<td th:text="${reserva.vehiculo.valor}"></td>
+				<td>
 			</tr>
 		</tbody>
 	</table>

@@ -82,8 +82,8 @@ public class ReservaRepositoryImpl implements IReservaRepository {
 	public List<Reserva> reportesReserva(LocalDateTime fechaInicial, LocalDateTime fechaFinal) {
 
 		TypedQuery<Reserva> query = this.manager
-				.createQuery("SELECT *"
-						+ " FROM Reserva e FETCH e.cliente c FETCH e.vehiculo v FETCH e.cobro co"
+				.createQuery("SELECT e"
+						+ " FROM Reserva e JOIN e.cliente c JOIN e.vehiculo v JOIN e.cobro co"
 						+ " WHERE co.fecha BETWEEN  :datoFechaInicio AND :datoFechaFinal", Reserva.class);
 		query.setParameter("datoFechaInicio", fechaInicial);
 		query.setParameter("datoFechaFinal", fechaFinal);

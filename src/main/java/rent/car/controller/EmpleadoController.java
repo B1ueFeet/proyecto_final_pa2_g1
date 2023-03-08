@@ -1,5 +1,6 @@
 package rent.car.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import rent.car.modelo.Cliente;
+import rent.car.modelo.Reserva;
 import rent.car.modelo.Vehiculo;
 import rent.car.service.IClienteService;
 import rent.car.service.IReservaService;
@@ -133,10 +135,19 @@ public class EmpleadoController {
 		return "redirect:/empleados/buscarV";
 	}
 
-	@GetMapping("/reporteReservas")
-	public String reporteReservas(Model model) {
+	@GetMapping("/reporte/reservas")
+	public String reporteReservas(String hola) {
+		
 		// this.reservaService.reporteReserva(null, null);
 		return "vReporteReserva";
+	}
+
+	@GetMapping("/reporte/listaReservas")
+	public String listaReporteReservas(LocalDateTime fechaInicio, LocalDateTime fechaFinal, Model model) {
+		System.out.println("fechas: "  + fechaFinal + " " + fechaInicio);
+		List<Reserva> lista =  this.reservaService.reporteReserva(fechaInicio, fechaFinal);
+		model.addAttribute("reservas", lista);
+		return "vListaReporteReserva";
 	}
 
 	@GetMapping("/buscarVporId/{id}")
@@ -158,6 +169,7 @@ public class EmpleadoController {
 	public String reporteClientesVIP(Model model) {
 		List<Cliente> lista = this.clienteService.clientesVIP();
 		model.addAttribute("empleados", lista);
+
 		return "vListaReporteCVIP";
 	}
 
