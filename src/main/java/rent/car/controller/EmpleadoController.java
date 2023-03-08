@@ -113,5 +113,19 @@ public class EmpleadoController {
 		// this.reservaService.reporteReserva(null, null);
 		return "vReporteReserva";
 	}
+	@GetMapping("/buscarVporId/{id}")
+	public String buscarVehiculoporId(@PathVariable("id")Integer id,Model model) {
+		Vehiculo vehiculo = this.vehiculoService.encontrar(id);
+		model.addAttribute("vehiculo",vehiculo);
+		model.addAttribute("id", id);
+		return "vistaVehiculo";
+	}
+    
+	@PutMapping("/actualizarV/{id}")
+	public String actualizarPorId(@PathVariable("id") Integer id, Vehiculo vehiculo) {
+		vehiculo.setId(id);
+		this.vehiculoService.actualizar(vehiculo);
+		return"redirect:/empleados/buscarV";
+	}
 
 }
