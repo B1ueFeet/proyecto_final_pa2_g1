@@ -10,7 +10,6 @@ import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import rent.car.modelo.Cliente;
-import rent.car.modelo.Empleado;
 
 @Repository
 @Transactional
@@ -59,29 +58,35 @@ public class ClienteRepositoryImpl implements IClienteRepository {
 		TypedQuery<Cliente> query = this.entityManager
 				.createQuery("SELECT c FROM Cliente c WHERE c.cedula= :datoCedula", Cliente.class);
 		query.setParameter("datoCedula", Cedula);
-		return query.getSingleResult();
+		try {
+			return query.getSingleResult();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return query.getResultList().get(0);
+		}
 	}
-	
+
 	// BUSCAR USER
 	@Override
 	public Cliente buscarUser(String user) {
-		TypedQuery< Cliente> query = this.entityManager.createQuery("SELECT c FROM Cliente c WHERE c.usuario = :datoUsuario",Cliente.class);
+		TypedQuery<Cliente> query = this.entityManager
+				.createQuery("SELECT c FROM Cliente c WHERE c.usuario = :datoUsuario", Cliente.class);
 		query.setParameter("datoUsuario", user);
-		
+
 		try {
 			return query.getSingleResult();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.err.println("No se encontro el usuario");
 			return null;
-			
+
 		}
 	}
 
 	@Override
 	public List<Cliente> buscarTodos() {
 		// TODO Auto-generated method stub
-		Query query =this.entityManager.createQuery("select e from Cliente e");
+		Query query = this.entityManager.createQuery("select e from Cliente e");
 		return query.getResultList();
 	}
 

@@ -125,6 +125,7 @@ public class EmpleadoController {
 
 	@PostMapping("/insertarV")
 	public String insertarVehiculo(Vehiculo vehiculo) {
+		vehiculo.setEstado("D");
 		this.vehiculoService.guardar(vehiculo);
 		return "guardado";
 	}

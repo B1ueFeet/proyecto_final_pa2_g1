@@ -70,7 +70,6 @@ public class ReservaServiceImpl implements IReservaService {
 
 		} else {
 			System.out.println("El vehiculo esta disponible");
-			inicio = LocalDateTime.now();
 			Reserva reserva = new Reserva();
 			reserva.setCliente(cliente);
 			reserva.setVehiculo(vehiculo);
