@@ -121,7 +121,7 @@ public class ReservaServiceImpl implements IReservaService {
 
 	@Override
 	public Reserva buscarNumero(String numero) {
-		this.reservaRepository.buscarPorNumero(numero);
+		this.reservaRepository.buscar(numero);
 		return null;
 	}
 

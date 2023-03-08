@@ -231,9 +231,8 @@ public class EmpleadoController {
 	@PostMapping("/retirar/reserva")
 	public String buscarReserva(String numero, Model model) {
 		System.out.println("este es numero de registro " + numero);
-		Reserva reserva = this.reservaService.buscarNumero(numero);
+		Reserva reservav = this.reservaService.buscarNumero(numero);
 		this.reservaService.retirarVehiculoReservado(numero);
-		model.addAttribute("reserva", reserva);
 		return "redirect:/empleados/retirar";
 	}
 

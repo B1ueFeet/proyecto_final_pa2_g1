@@ -46,7 +46,7 @@ public class ReservaRepositoryImpl implements IReservaRepository {
 	public Integer actualizarEstado(String numeroReserva) {
 		// TODO Auto-generated method stub
 		Query query = this.manager.createNativeQuery(
-				"UPDATE rese_estado FROM reserva SET rese_estado = 'E' WHERE rese_numero = :datoNumero", Reserva.class);
+				"UPDATE public.reserva SET rese_estado = 'E' WHERE rese_numero = :datoNumero", Reserva.class);
 		query.setParameter("datoNumero", numeroReserva);
 
 		return query.executeUpdate();

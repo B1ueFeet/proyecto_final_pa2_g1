@@ -66,7 +66,7 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 	public Integer actualizarEstado(String placa) {
 		// TODO Auto-generated method stub
 		Query query = this.entityManager.createNativeQuery(
-				"UPDATE vehi_estado SET vehi_estado = 'ND' WHERE vehi_placa = :datoPlaca", Vehiculo.class);
+				"UPDATE vehiculo SET vehi_estado = 'ND' WHERE vehi_placa = :datoPlaca", Vehiculo.class);
 		query.setParameter("datoPlaca", placa);
 		return query.executeUpdate();
 	}
