@@ -37,10 +37,17 @@
 				<td th:text="${vehiculo.avaluo}"></td>
 				<td th:text="${vehiculo.valor}"></td>
 				<td>
-					<form th:action="@{/personas/borrarV/{id}(id=${vehiculo.id})}" th:object="${vehiculo}"
+					<form th:action="@{/empleados/borrarV/{id}(id=${vehiculo.id})}" th:object="${vehiculo}"
 						th:method="DELETE">
 
 						<input type="submit" value="Borrar">
+					</form>
+				</td>
+				<td>
+					<form th:action="@{/empleados/buscarVporId/{id}(id=${vehiculo.id})}" th:object="${vehiculo}"
+						th:method="GET">
+
+						<input type="submit" value="Editar">
 					</form>
 				</td>
 			</tr>
