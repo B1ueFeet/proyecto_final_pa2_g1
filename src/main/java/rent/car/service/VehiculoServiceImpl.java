@@ -1,6 +1,9 @@
 package rent.car.service;
 
+import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,6 +75,18 @@ public class VehiculoServiceImpl implements IVehiculoService {
 		// TODO Auto-generated method stub
 		return this.vehiculoRepository.buscarTodos();
 
+	}
+
+	@Override
+	public List<Vehiculo> vehiculosVIP(LocalDateTime fecha) {
+		// TODO Auto-generated method stub
+		
+		List<Vehiculo> vehiculos = this.vehiculoRepository.reporteVehiculo(fecha);
+		List<Vehiculo> vehiculosVIP = vehiculos.stream()
+				.sorted(Comparator.comparingDouble(
+						a -> a.getReserva().stream().map(b -> b.getTotal().doubleValue()).reduce(0.0, Double::sum)))
+				.collect(Collectors.toList());
+		return vehiculosVIP;
 	}
 
 }

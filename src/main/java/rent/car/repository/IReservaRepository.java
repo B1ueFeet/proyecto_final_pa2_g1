@@ -33,5 +33,8 @@ public interface IReservaRepository {
 	// Reporte reservas
 
 	public List<Reserva> reportesReserva(LocalDateTime fechaInicial, LocalDateTime fechaFinal);
-	
+
+	// Buscar todas las reservas
+
+	public List<Reserva> reservas();
 }
