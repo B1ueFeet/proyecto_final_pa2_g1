@@ -77,6 +77,7 @@ public class VehiculoServiceImpl implements IVehiculoService {
 
 	}
 
+<<<<<<< HEAD
 	@Override
 	public List<Vehiculo> vehiculosVIP(LocalDateTime fecha) {
 		// TODO Auto-generated method stub
@@ -87,6 +88,11 @@ public class VehiculoServiceImpl implements IVehiculoService {
 						a -> a.getReserva().stream().map(b -> b.getTotal().doubleValue()).reduce(0.0, Double::sum)))
 				.collect(Collectors.toList());
 		return vehiculosVIP;
+=======
+	public  List<Vehiculo> buscarTodosDisponibles(){
+		return this.vehiculoRepository.buscarTodosDisponibles();
+
+>>>>>>> refs/remotes/origin/juan6
 	}
 
 }

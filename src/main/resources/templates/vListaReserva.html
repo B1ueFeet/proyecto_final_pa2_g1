@@ -11,51 +11,43 @@
 </head>
 
 <body>
-	<table class="table table-success table-striped">
-		<thead>
-			<th>Placa</th>
-			<th>Modelo</th>
-			<th>Marca</th>
-			<th>Anio</th>
-			<th>Pais</th>
-			<th>Estado</th>
-			<th>Valor</th>
-		</thead>
+	<div class="container">
+		<h1>Lista de Vehículos</h1>
+		<form th:action="@{/clientes/consultar}" th:object="${vehiculo}" th:method="GET">
+			<input type="submit" value="Cotizar Vehiculos Disponibles">
+		</form>
+		<table class="table table-success table-striped">
+			<thead>
+				<th>Placa</th>
+				<th>Modelo</th>
+				<th>Marca</th>
+				<th>Año</th>
+				<th>Pais</th>
+				<th>Estado</th>
+				<th>Valor</th>
+			</thead>
 
-		<tbody>
-			<tr th:each="vehiculo:${vehiculos}">
-				<td th:text="${vehiculo.placa}"></td>
-				<td th:text="${vehiculo.modelo}"></td>
-				<td th:text="${vehiculo.marca}"></td>
-				<td th:text="${vehiculo.anio}"></td>
-				<td th:text="${vehiculo.pais}"></td>
-				<td th:text="${vehiculo.estado}"></td>
-				<td th:text="${vehiculo.valor}"></td>
-				<td>
-					<!--Usa el verbo Get porque va a traer la vista de reserva, para poder reservar?-->
-					<form th:action="@{/clientes/buscarplaca/{placa}(placa=${vehiculo.placa})}" th:object="${vehiculo}"
-						th:method="GET">
-						<input type="submit" value="PreReserva">
-					</form>
-				</td>
-			</tr>
+			<tbody>
+				<tr th:each="vehiculo:${vehiculos}">
+					<td th:text="${vehiculo.placa}"></td>
+					<td th:text="${vehiculo.modelo}"></td>
+					<td th:text="${vehiculo.marca}"></td>
+					<td th:text="${vehiculo.anio}"></td>
+					<td th:text="${vehiculo.pais}"></td>
+					<td th:text="${vehiculo.estado}"></td>
+					<td th:text="${vehiculo.valor}"></td>
+				</tr>
+			</tbody>
 
-		</tbody>
-
-	</table>
+		</table>
+	</div>
 </body>
 
 </html>
 
-
-
-
-
-
-
-
-
-
-
-
-
+<!--				<td>-->
+<!--					<form th:action="@{/clientes/buscarplaca/{placa}(placa=${vehiculo.placa})}" th:object="${vehiculo}"-->
+<!--						th:method="GET">-->
+<!--						<input type="submit" value="PreReserva">-->
+<!--					</form>-->
+<!--				</td>-->
