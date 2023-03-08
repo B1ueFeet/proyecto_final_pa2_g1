@@ -30,5 +30,10 @@ public interface IClienteRepository {
 	// Clientes VIP
 
 	public List<Cliente> buscarClientes();
+	
+	public Cliente encontrarCliente(Integer id);
+	
+	
+
 
 }

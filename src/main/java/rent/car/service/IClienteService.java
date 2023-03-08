@@ -24,5 +24,7 @@ public interface IClienteService {
 
 	// Clientes VIP
 	public List<Cliente> clientesVIP();
+	
+	public Cliente encontrarCliente(Integer id);
 
 }
