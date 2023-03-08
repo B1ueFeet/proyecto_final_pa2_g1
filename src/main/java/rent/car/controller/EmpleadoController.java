@@ -1,5 +1,6 @@
 package rent.car.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -134,9 +135,17 @@ public class EmpleadoController {
 		return "redirect:/empleados/buscarV";
 	}
 
-	@GetMapping("/reporteReservas")
-	public String reporteReservas(Model model) {
+	@PostMapping("/reporte/reservas")
+	public String reporteReservas(Reserva Reserva) {
 		return "vReporteReserva";
+	}
+
+	@PostMapping("/reporte/listaReservas")
+	public String listaReporteReservas(LocalDateTime fechaInicio, LocalDateTime fechaFinal, Model model) {
+		System.out.println("fechas: " + fechaFinal + " " + fechaInicio);
+		List<Reserva> lista = this.reservaService.reporteReserva(fechaInicio, fechaFinal);
+		model.addAttribute("reservas", lista);
+		return "vListaReporteReserva";
 	}
 
 	@GetMapping("/buscarVporId/{id}")
@@ -158,6 +167,7 @@ public class EmpleadoController {
 	public String reporteClientesVIP(Model model) {
 		List<Cliente> lista = this.clienteService.clientesVIP();
 		model.addAttribute("empleados", lista);
+
 		return "vListaReporteCVIP";
 	}
 

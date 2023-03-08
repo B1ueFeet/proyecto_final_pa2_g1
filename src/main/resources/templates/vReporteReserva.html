@@ -8,15 +8,15 @@
 </head>
 
 <body>
-	<table>
-		<h1>Ingrese el periodo de fechas:</h1>
-		<form th:action="@{/empleados/reporte/clientesVIP}" method="POST">
+	<form th:action="@{/empleados/reporte/listaReservas}" th:method="POST">
+		<table>
+			<h1>Ingrese el periodo de fechas:</h1>
 			<tr>
 				<td>
 					<label>Fecha inicial</label>
 				</td>
 				<td>
-					<input type="datetime-local" th:field="fechainicio">
+					<input type="datetime-local" id="fechaInicio" name="fechaInicio" th.value="${fechaInicio}">
 				</td>
 			</tr>
 			<tr>
@@ -24,16 +24,14 @@
 					<label>Fecha final</label>
 				</td>
 				<td>
-					<input type="datetime-local" th:field="fechafinal">
+					<input type="datetime-local" id="fechaFinal" name="fechaFinal" th.value="${fechaFinal}">
 				</td>
 			</tr>
-			<thead>
-				<tr>
-					<input class="btn btn-primary" type="submit" value="Buscar">
-				</tr>
 
-		</form>
-	</table>
+		</table>
+
+		<input class="btn btn-primary" type="submit" value="Buscar">
+	</form>
 </body>
 
 </html>
