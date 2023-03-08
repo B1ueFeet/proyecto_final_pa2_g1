@@ -110,6 +110,7 @@ public class EmpleadoController {
 
 	// Vehiculo
 
+
 	@GetMapping("/inicio/registrovehi") // va a tomar referencia a la raiz de nuestra aplicacion
 	public String paginaInicio(Vehiculo vehiculo) {
 		return "vRegistroVehiculo";
@@ -128,11 +129,38 @@ public class EmpleadoController {
 		return "vListaVehiculo";
 	}
 
+	@GetMapping("/visualizarVehiculo/{id}")
+	public String visualizarVehiculo(@PathVariable("id") Integer id, Model model) {
+		Vehiculo vehiculo = this.vehiculoService.encontrar(id);
+		model.addAttribute("vehiculo", vehiculo);
+		model.addAttribute("id", id);
+		return "vistaVisualizarVehiculo";
+	}
+
 	@DeleteMapping("/borrarV/{id}")
 	public String borrarPersona(@PathVariable("id") Integer id) {
 		this.vehiculoService.borrar(id);
 
 		return "redirect:/empleados/buscarV";
+	}
+	
+	//PARTE BUENA
+	@GetMapping("/inicio/buscarVehiculo") // va a tomar referencia a la raiz de nuestra aplicacion
+	public String paginaBuscarVehiculo(Vehiculo vehiculo) {
+		return "VistaBuscarVehiculoPorMarca";
+	}
+	@GetMapping("/buscarPorMarca")
+	public String buscarPorMarca(Vehiculo vehiculo, Model model) {
+		List<Vehiculo> lista = this.vehiculoService.encontrarPorMarca(vehiculo.getMarca());
+		model.addAttribute("empleados", lista);
+		return "vListaVehiculo";
+	}
+	@PutMapping("actualizarPorMarca/{marca}")
+	public String buscarPorMarca(@PathVariable("marca") String marca, Vehiculo vehiculo) {
+		vehiculo.setMarca(marca);
+		this.vehiculoService.encontrarPorMarca(marca);
+		return "redirect:/empleados/buscarV";
+
 	}
 
 	@GetMapping("/reporte/reservas")

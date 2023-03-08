@@ -17,13 +17,17 @@
 
 </head>
 
-<body style="background-color:rgb(192, 192, 192); padding:25px;"> 
-	<h3 style="color:crimson;">Registro Usuario</h3>
+<body style="background-image :url('https://fondosmil.com/fondo/21960.jpg');background-repeat:no-repeat;color: #FFFFFF; padding:25px;"> 
+	
+	<p>
+		<center><img src=http://padelecuador.com/wp-content/uploads/2016/09/BOTON_INICIARSESION.png"" alt="Auto"
+			></center>
+	</p>
 	<form th:action="@{/inicio/sesion}" th:object="${cliente}" method="GET">
-		 <table>
+		 <Center><table class="table-secondary">
 			<tr>
 				<td>
-					<label>Usuario:</label>
+					<label >Usuario:</label>
 				</td>
 
 				<td>
@@ -32,17 +36,17 @@
 			</tr>
 
 			<tr>
-				<td>
-					<label>Password:</label>
+				<td >
+					<label style=>Password:</label>
 				</td>
 				<td>
 					<input type="text" id="pas" th:field="${cliente.contrasenia}">
 				</td>
 			</tr>
-		</table>
-		<input class="btn btn-primary" type="submit" value="Ingresar">
-		<li class="nav-item">
-			<a href="/clientes/registro"> Registrarse</a>
+		</table></Center>
+		<Center><input class="btn btn-dark btn-lg" type="submit" value="Ingresar"></Center>
+		<li class="btn btn-warning btn-lg">
+			<a href="/clientes/registro"> Registrar Nuevo Usuario</a>
 		</li>
 	</form>
 </body>
