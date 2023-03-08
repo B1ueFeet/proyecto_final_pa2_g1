@@ -85,8 +85,8 @@ public class ReservaRepositoryImpl implements IReservaRepository {
 				.createQuery("SELECT e"
 						+ " FROM Reserva e JOIN e.cliente c JOIN e.vehiculo v JOIN e.cobro co"
 						+ " WHERE co.fecha BETWEEN  :datoFechaInicio AND :datoFechaFinal", Reserva.class);
-		query.setParameter("datoFechaInicio", fechaInicial);
-		query.setParameter("datoFechaFinal", fechaFinal);
+		query.setParameter("datoFechaInicio", fechaInicial.minusDays(1));
+		query.setParameter("datoFechaFinal", fechaFinal.plusDays(1));
 
 		return query.getResultList();
 	}

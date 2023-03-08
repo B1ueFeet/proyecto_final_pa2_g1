@@ -135,7 +135,7 @@ public class EmpleadoController {
 		return "redirect:/empleados/buscarV";
 	}
 
-	@PostMapping("/reporte/reservas")
+	@GetMapping("/reporte/reservas")
 	public String reporteReservas(Reserva Reserva) {
 		return "vReporteReserva";
 	}
@@ -170,6 +170,11 @@ public class EmpleadoController {
 
 		return "vListaReporteCVIP";
 	}
+	
+//	@GetMapping("/reporte/reservas")
+//	public String reporteVehiculos(Reserva Reserva) {
+//		return "vReporteReserva";
+//	}
 
 	@GetMapping("/retirar") // va a tomar referencia a la raiz de nuestra aplicacion
 	public String paginaBuscarReserva(Reserva reserva) {
