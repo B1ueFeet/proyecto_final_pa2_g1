@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import rent.car.modelo.Cliente;
 import rent.car.modelo.Vehiculo;
@@ -75,11 +74,10 @@ public class EmpleadoController {
 
 	}
 
-	@GetMapping("/buscarPorApellido/{apellido}")
-	public String buscarPorApellido(@RequestParam("apellido") String apellido, Model model) {
-		List<Cliente> cliente = this.clienteService.buscarApellido(apellido);
-		model.addAttribute("cliente", cliente);
-		model.addAttribute("apellido", apellido);
+	@GetMapping("/buscarPorApellido")
+	public String buscarPorApellido(Cliente cliente, Model model) {
+		List<Cliente> listCliente = this.clienteService.buscarApellido(cliente.getApellido());
+		model.addAttribute("empleados", listCliente);
 		return "vListaEmpleado";
 	}
 
