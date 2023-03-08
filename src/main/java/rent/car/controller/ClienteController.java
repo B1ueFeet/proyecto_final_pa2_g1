@@ -18,7 +18,7 @@ import rent.car.service.IReservaService;
 import rent.car.service.IVehiculoService;
 
 @Controller
-@RequestMapping("/clientes")
+@RequestMapping("/clientes") // URL:   http://localhost:8085/clientes/reservar        http://localhost:8085/clientes/registro
 public class ClienteController {
 
 	@Autowired
