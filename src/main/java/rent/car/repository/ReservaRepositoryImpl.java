@@ -59,11 +59,15 @@ public class ReservaRepositoryImpl implements IReservaRepository {
 		// TODO Auto-generated method stub
 		TypedQuery<ReservaDTO> typedQuery = this.manager.createQuery(
 				"SELECT new rent.car.modelo.dto.ReservaDTO(v.placa, v.modelo, e.estado, e.numero,c.cedula) from Reserva e "
-				+ "JOIN e.cliente c JOIN e.vehiculo v "
-				+ "WHERE e.numero = :datoNumero",
+						+ "JOIN e.cliente c JOIN e.vehiculo v " + "WHERE e.numero = :datoNumero",
 				ReservaDTO.class);
 		typedQuery.setParameter("datoNumero", numeroReserva);
-		return typedQuery.getSingleResult();
+		try {
+			return typedQuery.getSingleResult();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return typedQuery.getResultList().get(0);
+		}
 	}
 
 	// Obtener reserva por numero de reserva
@@ -75,23 +79,27 @@ public class ReservaRepositoryImpl implements IReservaRepository {
 		Query query = this.manager.createNativeQuery("SELECT * FROM reserva WHERE rese_numero = :datoNumero",
 				Reserva.class);
 		query.setParameter("datoNumero", numeroReserva);
-		return (Reserva) query.getSingleResult();
+		try {
+			return (Reserva) query.getSingleResult();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return (Reserva) query.getResultList().get(0);
+		}
 	}
 
 	@Override
 	public List<Reserva> reportesReserva(LocalDateTime fechaInicial, LocalDateTime fechaFinal) {
 
 		TypedQuery<Reserva> query = this.manager
-				.createQuery("SELECT e"
-						+ " FROM Reserva e JOIN e.cliente c JOIN e.vehiculo v JOIN e.cobro co"
+				.createQuery("SELECT e" + " FROM Reserva e JOIN e.cliente c JOIN e.vehiculo v JOIN e.cobro co"
 						+ " WHERE co.fecha BETWEEN  :datoFechaInicio AND :datoFechaFinal", Reserva.class);
 		query.setParameter("datoFechaInicio", fechaInicial.minusDays(1));
 		query.setParameter("datoFechaFinal", fechaFinal.plusDays(1));
 
 		return query.getResultList();
 	}
-	
-	//Todas las reservas
+
+	// Todas las reservas
 
 	@Override
 	public List<Reserva> reservas() {

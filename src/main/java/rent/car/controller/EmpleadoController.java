@@ -218,11 +218,12 @@ public class EmpleadoController {
 	public String listaReporteVehiculosVIP(LocalDateTime fecha, Model model) {
 		System.out.println("fecha:" + fecha);
 		List<Vehiculo> lista = this.vehiculoService.vehiculosVIP(fecha);
-		model.addAttribute("reservas", lista);
+		lista.forEach(System.out::println);
+		model.addAttribute("vehiculos", lista);
 		return "vListaReporteVVIP";
 	}
 
-	@GetMapping("/retirar") // va a tomar referencia a la raiz de nuestra aplicacion
+	@GetMapping("/retirar")
 	public String paginaBuscarReserva(Reserva reserva) {
 		return "vRetiroVehiculo";
 	}
@@ -231,6 +232,7 @@ public class EmpleadoController {
 	public String buscarReserva(String numero, Model model) {
 		System.out.println("este es numero de registro " + numero);
 		Reserva reserva = this.reservaService.buscarNumero(numero);
+		this.reservaService.retirarVehiculoReservado(numero);
 		model.addAttribute("reserva", reserva);
 		return "redirect:/empleados/retirar";
 	}

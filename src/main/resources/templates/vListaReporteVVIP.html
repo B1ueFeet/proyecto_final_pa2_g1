@@ -22,10 +22,8 @@
 				<th>Año</th>
 				<th>País</th>
 				<th>Estado</th>
-				<th>Cilindraje</th>
 				<th>Avaluo</th>
-				<th>Valor</th>
-				<th>Total IVA</th>
+				<th>Total Subtotales</th>
 				<th>Total Reservas</th>
 			</tr>
 		</thead>
@@ -37,11 +35,9 @@
 				<td th:text="${vehiculo.anio}"></td>
 				<td th:text="${vehiculo.pais}"></td>
 				<td th:text="${vehiculo.estado}"></td>
-				<td th:text="${vehiculo.cilindraje}"></td>
 				<td th:text="${vehiculo.avaluo}"></td>
+				<td th:text="${vehiculo.cilindraje}"></td>
 				<td th:text="${vehiculo.valor}"></td>
-				<td th:text="${vehiculo.reserva.getIva}"></td>
-				<td th:text="${vehiculo.reserva.getTotal}"></td>
 			</tr>
 		</tbody>
 	</table>

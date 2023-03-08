@@ -38,4 +38,8 @@ public interface IVehiculoService {
 
 	public List<Vehiculo> buscarTodosDisponibles();
 
+	public Double calcularSubtotal(Vehiculo vehiculo);
+
+	public Double calcularTotal(Vehiculo vehiculo);
+
 }

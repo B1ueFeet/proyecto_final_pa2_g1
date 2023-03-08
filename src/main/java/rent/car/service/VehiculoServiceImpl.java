@@ -1,6 +1,8 @@
 package rent.car.service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,6 +10,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import rent.car.modelo.Reserva;
 import rent.car.modelo.Vehiculo;
 import rent.car.repository.IVehiculoRepository;
 
@@ -86,14 +89,30 @@ public class VehiculoServiceImpl implements IVehiculoService {
 				.sorted(Comparator.comparingDouble(
 						a -> a.getReserva().stream().map(b -> b.getTotal().doubleValue()).reduce(0.0, Double::sum)))
 				.collect(Collectors.toList());
-		for(Vehiculo v : vehiculosVIP) {
-			System.out.println(v.getReserva());
-		}
+		vehiculosVIP.parallelStream().forEach(a -> {
+			a.setCilindraje(this.calcularSubtotal(a).toString());
+			a.setValor(new BigDecimal(this.calcularTotal(a)));
+		});
+		Collections.reverse(vehiculosVIP);
 		return vehiculosVIP;
 	}
 
 	public List<Vehiculo> buscarTodosDisponibles() {
 		return this.vehiculoRepository.buscarTodosDisponibles();
+	}
+
+	@Override
+	public Double calcularSubtotal(Vehiculo vehiculo) {
+		List<Reserva> lista = vehiculo.getReserva();
+		Double subTotal = lista.parallelStream().map(b -> b.getSubtotal().doubleValue()).reduce(0.0, Double::sum);
+		return subTotal;
+	}
+
+	@Override
+	public Double calcularTotal(Vehiculo vehiculo) {
+		List<Reserva> lista = vehiculo.getReserva();
+		Double total = lista.parallelStream().map(b -> b.getTotal().doubleValue()).reduce(0.0, Double::sum);
+		return total;
 	}
 
 }
