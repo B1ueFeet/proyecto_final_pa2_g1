@@ -29,6 +29,7 @@ public class ClienteServiceImpl implements IClienteService {
 
 	@Override
 	public void borrar(Integer id) {
+		this.clienteRepository.eliminar(id);
 
 	}
 
@@ -69,5 +70,16 @@ public class ClienteServiceImpl implements IClienteService {
 		return clientes;
 
 	}
+
+	@Override
+	public Cliente encontrarCliente(Integer id) {
+		// TODO Auto-generated method stub
+		
+		
+		return this.clienteRepository.buscar(id);
+	}
+	
+	
+	
 
 }

@@ -94,4 +94,10 @@ public class ClienteRepositoryImpl implements IClienteRepository {
 		return query.getResultList();
 	}
 
+	@Override
+	public Cliente encontrarCliente(Integer id) {
+		// TODO Auto-generated method stub
+		return this.entityManager.find(Cliente.class, id);
+	}
+
 }

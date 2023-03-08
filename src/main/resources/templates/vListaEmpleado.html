@@ -39,11 +39,21 @@
 					</form>
 				</td>
 				<td>
-					<form th:action="@{/empleados/buscarPorApellido/{apellido}(apellido=${cliente.apellido})}" th:object="${cliente}"
+					<form th:action="@{/empleados/buscarCporId/{id}(id=${cliente.id})}" th:object="${cliente}"
 						th:method="GET">
 						<input type="submit" value="Editar">
 					</form>
 				</td>
+				
+				<td>
+					<form th:action="@{/empleados/visualizarCliente/{id}(id=${cliente.id})}" th:object="${cliente}"
+						th:method="GET">
+						<input type="submit" value="Visualizar">
+					</form>
+				</td>
+				
+				
+				
 			</tr>
 		</tbody>
 	</table>
