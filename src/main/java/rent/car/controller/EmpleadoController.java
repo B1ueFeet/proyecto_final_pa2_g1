@@ -81,11 +81,11 @@ public class EmpleadoController {
 
 	}
 
-	@GetMapping("/buscarPorApellido/{apellido}")
-	public String buscarPorApellido(@RequestParam ("apellido") String apellido, Model model) {
-		List<Cliente> cliente =  this.clienteService.buscarApellido(apellido);
-		model.addAttribute("cliente", cliente);
-		model.addAttribute("apellido", apellido);
+	@GetMapping("/buscarPorApellido")
+	public String buscarPorApellido(Cliente cliente,Model model) {
+		List<Cliente> listCliente =  this.clienteService.buscarApellido(cliente.getApellido());
+		model.addAttribute("empleados", listCliente);
+
 		return "vListaEmpleado";
 	}
 
