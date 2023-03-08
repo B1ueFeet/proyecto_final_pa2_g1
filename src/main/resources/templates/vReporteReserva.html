@@ -10,32 +10,29 @@
 <body>
 	<table>
 		<h1>Ingrese el periodo de fechas:</h1>
-		<tr>
-			<td>
-				<label>Fecha inicial</label>
-			</td>
-			<td>
-				<input type="datetime-local" id="fechainicio">
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<label>Fecha final</label>
-			</td>
-			<td>
-				<input type="datetime-local" id="fechafinal">
-			</td>
-		</tr>
-	</table>    
-		<thead>
+		<form th:action="@{/empleados/reporte/clientesVIP}" method="POST">
 			<tr>
-				<th>Numero</th>	
-				<th>Fecha de inicio</th>
-				<th>Fecha de Fin</th>
+				<td>
+					<label>Fecha inicial</label>
+				</td>
+				<td>
+					<input type="datetime-local" th:field="fechainicio">
+				</td>
 			</tr>
-		</thead>
-	<table>
-		<thead>
+			<tr>
+				<td>
+					<label>Fecha final</label>
+				</td>
+				<td>
+					<input type="datetime-local" th:field="fechafinal">
+				</td>
+			</tr>
+			<thead>
+				<tr>
+					<input class="btn btn-primary" type="submit" value="Buscar">
+				</tr>
+
+		</form>
 	</table>
 </body>
 

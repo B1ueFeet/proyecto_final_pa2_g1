@@ -22,6 +22,8 @@
 				<th>Fecha de Nacimiento</th>
 				<th>Genero</th>
 				<th>Registro</th>
+				<th>Total IVA</th>
+				<th>Total Reservas</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -32,25 +34,6 @@
 				<td th:text="${cliente.fechaNacimiento}"></td>
 				<td th:text="${cliente.genero}"></td>
 				<td th:text="${cliente.registro}"></td>
-				<td>
-					<form th:action="@{/empleados/borrar/{id}(id=${cliente.id})}" th:object="${cliente}"
-						th:method="DELETE">
-						<input type="submit" value="Borrar">
-					</form>
-				</td>
-				<td>
-					<form th:action="@{/empleados/buscarCporId/{id}(id=${cliente.id})}" th:object="${cliente}"
-						th:method="GET">
-						<input type="submit" value="Editar">
-					</form>
-				</td>
-				
-				<td>
-					<form th:action="@{/empleados/visualizarCliente/{id}(id=${cliente.id})}" th:object="${cliente}"
-						th:method="GET">
-						<input type="submit" value="Visualizar">
-					</form>
-				</td>	
 			</tr>
 		</tbody>
 	</table>

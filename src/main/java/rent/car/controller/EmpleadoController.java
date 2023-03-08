@@ -1,6 +1,5 @@
 package rent.car.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +21,6 @@ import rent.car.service.IVehiculoService;
 
 @Controller
 @RequestMapping("/empleados")
-//como regla general siempre se debe poner el recurso general en plural
-//Manejo un recurso Persona
-
 public class EmpleadoController {
 
 	@Autowired
@@ -43,13 +39,11 @@ public class EmpleadoController {
 
 	@GetMapping("/inicio/registro") // va a tomar referencia a la raiz de nuestra aplicacion
 	public String paginaInicio(Cliente cliente) {
-
 		return "vRegistroClienteE";
 	}
-	
+
 	@GetMapping("/inicio/buscarCliente") // va a tomar referencia a la raiz de nuestra aplicacion
 	public String paginaBuscarCliente(Cliente cliente) {
-
 		return "VistaBuscarClientesPorApellido";
 	}
 
@@ -65,11 +59,11 @@ public class EmpleadoController {
 		model.addAttribute("empleados", lista);
 		return "vListaEmpleado";
 	}
-	
+
 	@GetMapping("/visualizarCliente/{id}")
-	public String visualizarCliente(@PathVariable("id")Integer id,Model model) {
+	public String visualizarCliente(@PathVariable("id") Integer id, Model model) {
 		Cliente cliente = this.clienteService.encontrarCliente(id);
-		model.addAttribute("cliente",cliente);
+		model.addAttribute("cliente", cliente);
 		model.addAttribute("id", id);
 		return "vistaVisualizarCliente";
 	}
@@ -82,8 +76,8 @@ public class EmpleadoController {
 	}
 
 	@GetMapping("/buscarPorApellido/{apellido}")
-	public String buscarPorApellido(@RequestParam ("apellido") String apellido, Model model) {
-		List<Cliente> cliente =  this.clienteService.buscarApellido(apellido);
+	public String buscarPorApellido(@RequestParam("apellido") String apellido, Model model) {
+		List<Cliente> cliente = this.clienteService.buscarApellido(apellido);
 		model.addAttribute("cliente", cliente);
 		model.addAttribute("apellido", apellido);
 		return "vListaEmpleado";
@@ -93,30 +87,27 @@ public class EmpleadoController {
 	public String buscarPorApellido(@PathVariable("apellido") String apellido, Cliente cliente) {
 		cliente.setApellido(apellido);
 		this.clienteService.buscarApellido(apellido);
-		return "redirect:/empleados/buscar";	
-		
+		return "redirect:/empleados/buscar";
+
 	}
-	
-	
+
 	@GetMapping("/buscarCporId/{id}")
-	public String buscarClienteporId(@PathVariable("id")Integer id,Model model) {
+	public String buscarClienteporId(@PathVariable("id") Integer id, Model model) {
 		Cliente cliente = this.clienteService.encontrarCliente(id);
-		model.addAttribute("cliente",cliente);
+		model.addAttribute("cliente", cliente);
 		model.addAttribute("id", id);
 		return "vistaCliente";
 	}
-	
+
 	@PutMapping("/actualizarC/{id}")
 	public String actualizarPorIdCliente(@PathVariable("id") Integer id, Cliente cliente) {
 		cliente.setId(id);
-		//this.vehiculoService.actualizar(vehiculo);
+		// this.vehiculoService.actualizar(vehiculo);
 		this.clienteService.actualizar(cliente);
 
-		return"redirect:/empleados/buscarC";
+		return "redirect:/empleados/buscarC";
 	}
-	
-	
-	
+
 	// Vehiculo
 
 	@GetMapping("/inicio/registrovehi") // va a tomar referencia a la raiz de nuestra aplicacion
@@ -149,19 +140,27 @@ public class EmpleadoController {
 		// this.reservaService.reporteReserva(null, null);
 		return "vReporteReserva";
 	}
+
 	@GetMapping("/buscarVporId/{id}")
-	public String buscarVehiculoporId(@PathVariable("id")Integer id,Model model) {
+	public String buscarVehiculoporId(@PathVariable("id") Integer id, Model model) {
 		Vehiculo vehiculo = this.vehiculoService.encontrar(id);
-		model.addAttribute("vehiculo",vehiculo);
+		model.addAttribute("vehiculo", vehiculo);
 		model.addAttribute("id", id);
 		return "vistaVehiculo";
 	}
-    
+
 	@PutMapping("/actualizarV/{id}")
 	public String actualizarPorId(@PathVariable("id") Integer id, Vehiculo vehiculo) {
 		vehiculo.setId(id);
 		this.vehiculoService.actualizar(vehiculo);
-		return"redirect:/empleados/buscarV";
+		return "redirect:/empleados/buscarV";
+	}
+
+	@GetMapping("/reporte/clientesVIP")
+	public String reporteClientesVIP(Model model) {
+		List<Cliente> lista = this.clienteService.clientesVIP();
+		model.addAttribute("empleados", lista);
+		return "vListaReporteCVIP";
 	}
 
 }

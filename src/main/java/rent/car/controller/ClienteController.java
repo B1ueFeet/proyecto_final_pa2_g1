@@ -81,68 +81,10 @@ public class ClienteController {
 		return "vistaReservaCompletada";
 	}
 	
-	//******************************************************************	
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-@GetMapping("/visualizar")
-public String paginaBuscarTodosVehiculos(Model model) {
-	List<Vehiculo> listaVehiculos = this.iVehiculoService.buscarTodos();
-	model.addAttribute("vehiculos", listaVehiculos);
-	return "vListaReserva";
-}
-
-
-@GetMapping("/buscarplaca/{placa}")
-public String buscarPorPlaca(@PathVariable("placa") String placa, Model model, Reserva reserva) {
-	Vehiculo vehiculo = this.iVehiculoService.buscarPlaca(placa);
-	List<Vehiculo> listaVehiculos = this.iVehiculoService.buscarTodos();
-	model.addAttribute("vehiculo", vehiculo);
-	model.addAttribute("reserva", reserva);
-	model.addAttribute("vehiculosDisponibles", listaVehiculos);
-	return "vistaSecundariaReserva21";
-}
-
-@PostMapping("/insertar")
-public String insertarReserva(Reserva reserva) {
 	
-	reserva.setIva(new BigDecimal(0.12));
 
-	this.iReservaService.agregar(reserva);
-	return "vistaReserva";
 }
 
 
-@GetMapping("/registro")
-public String paginaInicio(Cliente cliente) {
-	return "vRegistroClienteC";
-}
 
-@PostMapping("/insertar/cliente")
-public String insertarCliente(Cliente cliente) {
-	this.iClienteService.registrar("C", cliente);
-	return "redirect: /clientes/inicio";
-}
-*/
+
