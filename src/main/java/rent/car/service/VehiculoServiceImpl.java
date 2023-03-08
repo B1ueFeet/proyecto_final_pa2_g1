@@ -74,4 +74,9 @@ public class VehiculoServiceImpl implements IVehiculoService {
 
 	}
 
+	public  List<Vehiculo> buscarTodosDisponibles(){
+		return this.vehiculoRepository.buscarTodosDisponibles();
+
+	}
+
 }

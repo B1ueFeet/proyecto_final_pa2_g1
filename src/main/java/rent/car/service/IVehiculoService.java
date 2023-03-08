@@ -29,4 +29,7 @@ public interface IVehiculoService {
 
 
 	public List<Vehiculo> encontrarTodos();
+	
+	public  List<Vehiculo> buscarTodosDisponibles();
+
 }

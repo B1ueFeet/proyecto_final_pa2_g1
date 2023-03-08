@@ -11,73 +11,83 @@
 </head>
 
 <body>
-	<h1>PreReserva realizada con Exito</h1>
-	<form th:action="@{/clientes/reservar}" th:object="${reserva}" th:method="POST">
-<!--	<form th:action="@{/clientes/reservar}" th:object="${reservareal}" th:method="POST">-->
+	<div class="container">
+		<h1>Pre-Reserva realizada con Exito</h1>
+		<form th:action="@{/clientes/reservar}" th:object="${reserva}" th:method="POST">
+			<table>
+				<tr>
+					<td>
+						<label> Marca</label>
+					</td>
+					<td>
+						<input type="text" id="marca" th:field="${vehiculo.marca}" readonly="readonly"
+							style="text-align: center;"></input>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label> Modelo</label>
+					</td>
+					<td>
+						<input type="text" id="modelo" th:field="${vehiculo.modelo}" readonly="readonly"
+							style="text-align: center;"></input>
+					</td>
+				</tr>
 
-		<table>
-			<tr>
-				<td>
-					<label> Marca</label>
-				</td>
-				<td>
-					<input type="text" id="marca" th:field="${vehiculo.marca}" readonly="readonly"
-						style="text-align: center;"></input>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label> Modelo</label>
-				</td>
-				<td>
-					<input type="text" id="modelo" th:field="${vehiculo.modelo}" readonly="readonly"
-						style="text-align: center;"></input>
-				</td>
-			</tr>
+				<tr>
+					<td>
+						<label>Placas</label>
+					</td>
+					<td>
+						<input type="text" id="placas" th:field="${vehiculo.placa}" readonly="readonly"
+							style="text-align: center;"></input>
+					</td>
+				</tr>
 
-			<tr>
-				<td>
-					<label>Placas</label>
-				</td>
-				<td>
-					<input type="text" id="placas" th:field="${vehiculo.placa}" readonly="readonly"
-						style="text-align: center;"></input>
-				</td>
-			</tr>
+				<tr>
+					<td>
+						<label>Valor</label>
+					</td>
+					<td>
+						<input type="text" id="valor" th:field="${vehiculo.valor}" readonly="readonly"
+							style="text-align: center;"></input>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>Estado</label>
+					</td>
+					<td>
+						<input type="text" id="estado" th:field="${vehiculo.estado}" readonly="readonly"
+							style="text-align: center;"></input>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>Total a Pagar</label>
+					</td>
+					<td>
+						<input type="text" id="total" th:field="${reserva.total}" readonly="readonly"
+							style="text-align: center;"></input>
+					</td>
+				</tr>
 
-			<tr>
-				<td>
-					<label>Valor</label>
-				</td>
-				<td>
-					<input type="text" id="valor" th:field="${vehiculo.valor}" readonly="readonly"
-						style="text-align: center;"></input>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label>Estado</label>
-				</td>
-				<td>
-					<input type="text" id="estado" th:field="${vehiculo.estado}" readonly="readonly"
-						style="text-align: center;"></input>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label>Total a Pagar</label>
-				</td>
-				<td>
-					<input type="text" id="total" th:field="${reserva.total}" readonly="readonly"
-						style="text-align: center;"></input>
-				</td>
-			</tr>
-		</table>
-		<input class="btn btn-success" type="submit" value="Reservar">
+				<tr>
+					<td>
+						<label>Tarjeta de Credito</label>
+					</td>
+					<td>
+						<input type="text" id="tarjeta" th:field="${reserva.tarjeta}" 
+							style="text-align: center;" required></input>
+					</td>
+				</tr>
+			</table>
+			<input class="btn btn-success" type="submit" value="Reservar">
 
 
 
-	</form>
+		</form>
+	</div>
 </body>
 
 </html>

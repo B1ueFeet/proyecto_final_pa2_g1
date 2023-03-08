@@ -26,114 +26,68 @@
 </head>
 
 <body>
-	<form th:action="@{/clientes/verificardatos}" th:object="${reserva}" th:method="POST" onsubmit="return validarFechas()">
-		<!--onsubmit = especificar una función de JavaScript que se ejecutará cuando se envíe el formulario-->
+	<div class="container">
 		<h1>Ingrese los siguientes datos:</h1>
-		<table>
-			<tr>
-				<td>
-					<label>Cedula:</label>
-				</td>
-				<td>
-					<input type="text" id="cedula" th:field="${reserva.cedula}" style="text-align: center;"
-						required></input>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label>Fecha inicio</label>
-				</td>
-				<td>
-					<!--th:field="${reserva.inicio}"-->
-					<input type="datetime-local" id="fechaInicio" th:field="${reserva.inicio}"
-						style="text-align: center;" required></input>
-				</td>
-			</tr>
+		<form th:action="@{/clientes/verificardatos}" th:object="${reserva}" th:method="POST"
+			onsubmit="return validarFechas()">
+			<!--onsubmit = especificar una función de JavaScript que se ejecutará cuando se envíe el formulario-->
+			<table>
+				<tr>
+					<td>
+						<label>Cedula:</label>
+					</td>
+					<td>
+						<input type="text" id="cedula" th:field="${reserva.cedula}" style="text-align: center;"
+							required></input>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>Fecha inicio</label>
+					</td>
+					<td>
+						<!--th:field="${reserva.inicio}"-->
+						<input type="datetime-local" id="fechaInicio" th:field="${reserva.inicio}"
+							style="text-align: center;" required></input>
+					</td>
+				</tr>
 
-			<tr>
-				<td>
-					<label>Fecha final</label>
-				</td>
-				<td>
-					<input type="datetime-local" id="fechaFin" th:field="${reserva.fin}" style="text-align: center;"
-						required></input>
-				</td>
-			</tr>
+				<tr>
+					<td>
+						<label>Fecha final</label>
+					</td>
+					<td>
+						<input type="datetime-local" id="fechaFin" th:field="${reserva.fin}" style="text-align: center;"
+							required></input>
+					</td>
+				</tr>
 
-			<tr>
-				<td>
-					<label>PLAXAS</label>
-				</td>
-				<td>
-					<select id="placas" th:field="${reserva.placa}">
-						<option value="">Seleccione una placa</option>
-						<option th:each="vehiculo : ${vehiculosDisponibles}" th:value="${vehiculo.placa}"
-							th:text="${vehiculo.placa}"></option>
-					</select>
+				<tr>
+					<td>
+						<label>PLACAS</label>
+					</td>
+					<td>
+						<select id="placas" th:field="${reserva.placa}">
+							<option value="">Seleccione una placa</option>
+							<option th:each="vehiculo : ${listaVehiculosDisponibles}" th:value="${vehiculo.placa}"
+								th:text="${vehiculo.placa}"></option>
+						</select>
 
-				</td>
-			</tr>
-		</table>
+					</td>
+				</tr>
+			</table>
 
-		<!--		<h2>Para la selección del vehículo: </h2>-->
-		<!--		<table>-->
-		<!--			<tr>-->
-		<!--				<td>-->
-		<!--					<label> Marca</label>-->
-		<!--				</td>-->
-		<!--				<td>-->
-		<!--					<input type="text" id="marca" th:field="${vehiculo.marca}" readonly="readonly"-->
-		<!--						style="text-align: center;"></input>-->
-		<!--				</td>-->
-		<!--			</tr>-->
-		<!--			<tr>-->
-		<!--				<td>-->
-		<!--					<label> Modelo</label>-->
-		<!--				</td>-->
-		<!--				<td>-->
-		<!--					<input type="text" id="modelo" th:field="${vehiculo.modelo}" readonly="readonly"-->
-		<!--						style="text-align: center;"></input>-->
-		<!--				</td>-->
-		<!--			</tr>-->
 
-		<!--			<tr>-->
-		<!--				<td>-->
-		<!--					<label>Placas</label>-->
-		<!--				</td>-->
-		<!--				<td>-->
-		<!--					<input type="text" id="placas" th:field="${vehiculo.placa}" readonly="readonly"-->
-		<!--						style="text-align: center;"></input>-->
-		<!--				</td>-->
-		<!--			</tr>-->
 
-		<!--			<tr>-->
-		<!--				<td>-->
-		<!--					<label>Valor</label>-->
-		<!--				</td>-->
-		<!--				<td>-->
-		<!--					<input type="text" id="valor" th:field="${vehiculo.valor}" readonly="readonly"-->
-		<!--						style="text-align: center;"></input>-->
-		<!--				</td>-->
-		<!--			</tr>-->
-		<!--			<tr>-->
-		<!--				<td>-->
-		<!--					<label>Estado</label>-->
-		<!--				</td>-->
-		<!--				<td>-->
-		<!--					<input type="text" id="estado" th:field="${vehiculo.estado}" readonly="readonly"-->
-		<!--						style="text-align: center;"></input>-->
-		<!--				</td>-->
-		<!--			</tr>-->
-		</table>
+			<input class="btn btn-success" type="submit" value="Siguiente">
 
-		<input class="btn btn-success" type="submit" value="Reservar">
+<!--					<input class="btn btn-success" type="submit" value="Reservar" th:if="${vehiculo.estado == 'D'}"-->
+<!--						style="font-size: 24px; text-align: center;" />-->
+<!--					<p th:unless="${vehiculo.estado == 'D'}" style="font-size: 24px;">Vehiculo no disponible</p>-->
+			<!--controlar la visibilidad de un elemento en función de una expresión booleana.-->
 
-		<!--		<input class="btn btn-success" type="submit" value="Reservar" th:if="${vehiculo.estado == 'D'}"-->
-		<!--			style="font-size: 24px; text-align: center;" />-->
-		<!--		<p th:unless="${vehiculo.estado == 'D'}" style="font-size: 24px;">Vehiculo no disponible</p>-->
-		<!--		 controlar la visibilidad de un elemento en función de una expresión booleana.-->
-
-	</form>
+		</form>
+	</div>
 </body>
 
 </html>

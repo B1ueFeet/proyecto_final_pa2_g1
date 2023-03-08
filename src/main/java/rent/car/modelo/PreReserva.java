@@ -36,6 +36,8 @@ public class PreReserva {
 	@Column(name = "pre_rese_total")
 	private BigDecimal total;
 
+	@Column(name = "pre_rese_tarjeta")
+	private String tarjeta;
 	
 	
 	public Integer getId() {
@@ -86,6 +88,13 @@ public class PreReserva {
 		this.total = total;
 	}
 
+	public String getTarjeta() {
+		return tarjeta;
+	}
+
+	public void setTarjeta(String tarjeta) {
+		this.tarjeta = tarjeta;
+	}
 
 	
 	

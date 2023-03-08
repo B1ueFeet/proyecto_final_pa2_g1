@@ -106,4 +106,11 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 
 	}
 
+	@Override
+	public List<Vehiculo> buscarTodosDisponibles() {
+		Query query = this.entityManager.createQuery("SELECT v FROM Vehiculo v WHERE v.estado=:datoDisp ");
+		query.setParameter("datoDisp", "D");
+		return query.getResultList();
+	}
+
 }

@@ -82,12 +82,12 @@ public class ClienteController {
 	@Autowired
 	private PreReservaService preReserva;
 
-	@GetMapping("/visualizar")
-	public String paginaBuscarTodosVehiculos(Model model) {
-		List<Vehiculo> listaVehiculos = this.iVehiculoService.buscarTodos();
-		model.addAttribute("vehiculos", listaVehiculos);
-		return "vListaReserva";
-	}
+//	@GetMapping("/visualizar")
+//	public String paginaBuscarTodosVehiculos(Model model) {
+//		List<Vehiculo> listaVehiculos = this.iVehiculoService.buscarTodos();
+//		model.addAttribute("vehiculos", listaVehiculos);
+//		return "vListaReserva";
+//	}
 
 	
 	@GetMapping("/buscarplaca/{placa}")
@@ -102,53 +102,44 @@ public class ClienteController {
 	
 	
 	//*******************************************************************************
+	@GetMapping("/visualizar")
+	public String paginaBuscarTodosVehiculos(Model model) {
+		List<Vehiculo> listaVehiculos = this.iVehiculoService.buscarTodos();
+		model.addAttribute("vehiculos", listaVehiculos);
+		return "vListaReserva";
+	}
+
+	
 	@GetMapping("/consultar")
 	public String consulta(Model model, PreReserva preReserva) {
 		List<Vehiculo> listaVehiculos = this.iVehiculoService.buscarTodos();
+		List<Vehiculo> listaVehiculosDisponibles = this.iVehiculoService.buscarTodosDisponibles();
 		model.addAttribute("reserva", preReserva);
 		model.addAttribute("vehiculosDisponibles", listaVehiculos);
+		model.addAttribute("listaVehiculosDisponibles", listaVehiculosDisponibles);
+
 		return "vistaConsulta";
 	}
 	
 	@PostMapping("/verificardatos")
-	public String verificaDatos(PreReserva reserva, Model model, Reserva reservareal) {
+	public String verificaDatos(PreReserva reserva, Model model) {
 		hi = reserva.getInicio();
 		hf = reserva.getFin();
-
 		Vehiculo vehiculo = this.iVehiculoService.buscarPlaca(reserva.getPlaca());
 		reserva.setTotal(this.preReserva.reservar(vehiculo.getPlaca(), reserva.getInicio(), reserva.getFin()));
 		model.addAttribute("vehiculo", vehiculo);
 		model.addAttribute("reserva", reserva);
-		model.addAttribute("reservareal", reservareal);
 		this.preReserva.guardar(reserva);
 		return "vistaVerificacionDatos";
 	}
 
 
 	@PostMapping("/reservar")
-	public String insertarReservado(PreReserva reserva, Model model, Reserva reservareal) {
+	public String insertarReservado(PreReserva reserva) {
 		Vehiculo vehiculo = this.iVehiculoService.buscarPlaca(reserva.getPlaca());
-		System.out.println(reserva.getId());
-		System.out.println(reserva.getInicio());
-		System.out.println("+++++++++++++++++++++++++++++++++++++++++");
-		System.out.println(hi);
-		System.out.println(hf);
-		System.out.println("+++++++++++++++++++++++++++++++++++++++++");
-		System.out.println(LocalDate.now());
-
-		System.out.println(reserva.getFin());
-
-//		Cliente cliente = this.iClienteService;
-		
 		this.iReservaService.reservar(vehiculo.getPlaca(), "123456789", hi, hf, "132");
-		
-		model.addAttribute("vehiculo", vehiculo);
-		model.addAttribute("reserva", reserva);
-		model.addAttribute("reservareal", reservareal);
-
 		return "vistaReservaCompletada";
 	}
-	
 	
 	//******************************************************************	
 	
