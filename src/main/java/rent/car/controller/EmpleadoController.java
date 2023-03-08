@@ -38,14 +38,10 @@ public class EmpleadoController {
 		return "vInicioE";
 	}
 
-	@GetMapping("/inicio/registro") // va a tomar referencia a la raiz de nuestra aplicacion
+	// registro de un cliente
+	@GetMapping("/cliente/registro")
 	public String paginaInicio(Cliente cliente) {
 		return "vRegistroClienteE";
-	}
-
-	@GetMapping("/inicio/buscarCliente") // va a tomar referencia a la raiz de nuestra aplicacion
-	public String paginaBuscarCliente(Cliente cliente) {
-		return "VistaBuscarClientesPorApellido";
 	}
 
 	@PostMapping("/insertar")
@@ -54,14 +50,29 @@ public class EmpleadoController {
 		return "guardado";
 	}
 
-	@GetMapping("/buscar")
+	// busqueda por apellido
+	@GetMapping("/inicio/buscar/apellido")
+	public String paginaBuscarCliente(Cliente cliente) {
+		return "VistaBuscarClientesPorApellido";
+	}
+
+	@GetMapping("/lista/apellidos")
+	public String buscarPorApellido(Cliente cliente, Model model) {
+		List<Cliente> listCliente = this.clienteService.buscarApellido(cliente.getApellido());
+		model.addAttribute("empleados", listCliente);
+		return "vListaCliente";
+	}
+
+	// buscar todos
+	@GetMapping("/lista")
 	public String buscarClientes(Model model) {
 		List<Cliente> lista = this.clienteService.encontrarTodos();
 		model.addAttribute("empleados", lista);
-		return "vListaEmpleado";
+		return "vListaCliente";
 	}
 
-	@GetMapping("/visualizarCliente/{id}")
+	// Actualizar cliente
+	@GetMapping("/cliente/ver/{id}")
 	public String visualizarCliente(@PathVariable("id") Integer id, Model model) {
 		Cliente cliente = this.clienteService.encontrarCliente(id);
 		model.addAttribute("cliente", cliente);
@@ -69,29 +80,25 @@ public class EmpleadoController {
 		return "vistaVisualizarCliente";
 	}
 
-	@DeleteMapping("/borrar/{id}")
+	// borrar
+	@DeleteMapping("/cliente/borrar/{id}")
 	public String borrarCliente(@PathVariable("id") Integer id) {
 		this.clienteService.borrar(id);
-		return "redirect:/empleados/buscar";
+		return "redirect:/empleados/lista";
 
 	}
 
-	@GetMapping("/buscarPorApellido")
-	public String buscarPorApellido(Cliente cliente, Model model) {
-		List<Cliente> listCliente = this.clienteService.buscarApellido(cliente.getApellido());
-		model.addAttribute("empleados", listCliente);
-		return "vListaEmpleado";
-	}
-
+	// actualizar
 	@PutMapping("actualizar/{apellido}")
 	public String buscarPorApellido(@PathVariable("apellido") String apellido, Cliente cliente) {
 		cliente.setApellido(apellido);
 		this.clienteService.buscarApellido(apellido);
-		return "redirect:/empleados/buscar";
+		return "redirect:/empleados/lista";
 
 	}
 
-	@GetMapping("/buscarCporId/{id}")
+	// ver cliente
+	@GetMapping("/cliente/actualizar/{id}")
 	public String buscarClienteporId(@PathVariable("id") Integer id, Model model) {
 		Cliente cliente = this.clienteService.encontrarCliente(id);
 		model.addAttribute("cliente", cliente);
@@ -99,17 +106,17 @@ public class EmpleadoController {
 		return "vistaCliente";
 	}
 
-	@PutMapping("/actualizarC/{id}")
+	// actualizar cliente
+	@PutMapping("/actualizar/cliente/{id}")
 	public String actualizarPorIdCliente(@PathVariable("id") Integer id, Cliente cliente) {
 		cliente.setId(id);
 		// this.vehiculoService.actualizar(vehiculo);
 		this.clienteService.actualizar(cliente);
 
-		return "redirect:/empleados/buscarC";
+		return "redirect:/empleados/lista";
 	}
 
 	// Vehiculo
-
 
 	@GetMapping("/inicio/registrovehi") // va a tomar referencia a la raiz de nuestra aplicacion
 	public String paginaInicio(Vehiculo vehiculo) {
@@ -143,18 +150,20 @@ public class EmpleadoController {
 
 		return "redirect:/empleados/buscarV";
 	}
-	
-	//PARTE BUENA
+
+	// PARTE BUENA
 	@GetMapping("/inicio/buscarVehiculo") // va a tomar referencia a la raiz de nuestra aplicacion
 	public String paginaBuscarVehiculo(Vehiculo vehiculo) {
 		return "VistaBuscarVehiculoPorMarca";
 	}
+
 	@GetMapping("/buscarPorMarca")
 	public String buscarPorMarca(Vehiculo vehiculo, Model model) {
 		List<Vehiculo> lista = this.vehiculoService.encontrarPorMarca(vehiculo.getMarca());
 		model.addAttribute("empleados", lista);
 		return "vListaVehiculo";
 	}
+
 	@PutMapping("actualizarPorMarca/{marca}")
 	public String buscarPorMarca(@PathVariable("marca") String marca, Vehiculo vehiculo) {
 		vehiculo.setMarca(marca);

@@ -13,41 +13,47 @@
 </head>
 
 <body>
-	<thead>
-		<tr>
-			<th>Cedula</th>
-			<th>Nombre</th>
-			<th>Apellido</th>
-			<th>Fecha de Nacimiento</th>
-			<th>Genero</th>
-			<th>Registro</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr th:each="cliente:${clientes}">
-			<td th:text="${cliente.cedula}"></td>
-			<td th:text="${cliente.nombre}"></td>
-			<td th:text="${cliente.apellido}"></td>
-			<td th:text="${cliente.fecha}"></td>
-			<td th:text="${cliente.genero}"></td>
-			<td th:text="${cliente.registro}"></td>
-			<td>
-				<form th:action="@{/personas/borrar/{id}(id=${persona.id})}" th:object="${persona}" th:method="DELETE">
-					<input type="submit" value="Eliminar">
-				</form>
-			</td>
-			<td>
-				<form th:action="@{/personas/borrar/{id}(id=${persona.id})}" th:object="${persona}" th:method="DELETE">
-					<input type="submit" value="Eliminar">
-				</form>
-			</td>
-			<td>
-				<form th:action="@{/personas/borrar/{id}(id=${persona.id})}" th:object="${persona}" th:method="DELETE">
-					<input type="submit" value="Eliminar">
-				</form>
-			</td>
-		</tr>
-	</tbody>
+	<table class="table table-success table-striped">
+		<thead>
+			<tr>
+				<th>Cedula</th>
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th>Fecha de Nacimiento</th>
+				<th>Genero</th>
+				<th>Registro</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="cliente:${empleados}">
+				<td th:text="${cliente.cedula}"></td>
+				<td th:text="${cliente.nombre}"></td>
+				<td th:text="${cliente.apellido}"></td>
+				<td th:text="${cliente.fechaNacimiento}"></td>
+				<td th:text="${cliente.genero}"></td>
+				<td th:text="${cliente.registro}"></td>
+				<td>
+					<form th:action="@{/empleados/cliente/borrar/{id}(id=${cliente.id})}" th:object="${cliente}"
+						th:method="DELETE">
+						<input type="submit" value="Borrar">
+					</form>
+				</td>
+				<td>
+					<form th:action="@{/empleados/cliente/actualizar/{id}(id=${cliente.id})}" th:object="${cliente}"
+						th:method="GET">
+						<input type="submit" value="Editar">
+					</form>
+				</td>
+
+				<td>
+					<form th:action="@{/empleados/cliente/ver/{id}(id=${cliente.id})}" th:object="${cliente}"
+						th:method="GET">
+						<input type="submit" value="Visualizar">
+					</form>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </body>
 
 </html>

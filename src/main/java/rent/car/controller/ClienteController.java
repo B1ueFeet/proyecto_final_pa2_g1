@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import rent.car.modelo.Cliente;
 import rent.car.modelo.PreReserva;
 import rent.car.modelo.Vehiculo;
 import rent.car.service.IClienteService;
@@ -77,6 +78,17 @@ public class ClienteController {
 		Vehiculo vehiculo = this.iVehiculoService.buscarPlaca(preReserva.getPlaca());
 		this.iReservaService.reservar(vehiculo.getPlaca(), ced, hi, hf, preReserva.getTarjeta());
 		return "vistaReservaCompletada";
+	}
+
+	@GetMapping("/registro")
+	public String paginaInicio(Cliente cliente) {
+		return "vRegistroClienteC";
+	}
+
+	@PostMapping("/insertar")
+	public String insertarCliente(Cliente cliente) {
+		this.iClienteService.registrar("C", cliente);
+		return "guardado";
 	}
 
 }

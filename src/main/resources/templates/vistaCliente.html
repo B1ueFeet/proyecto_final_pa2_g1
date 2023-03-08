@@ -11,9 +11,9 @@
 </head>
 
 <body>
-	<form th:action="@{/empleados/actualizarC/{id}(id =${cliente.id})}" th:object="${cliente}" th:method="PUT">
+	<form th:action="@{/empleados/actualizar/cliente/{id}(id =${cliente.id})}" th:object="${cliente}" th:method="PUT">
 		<h2>Modifique los datos:</h2>
-<table class="table table-striped table-bordered table-hover table-responsive">
+		<table class="table table-striped table-bordered table-hover table-responsive">
 
 
 			<tr>
@@ -103,7 +103,7 @@
 
 
 
-		<input class="btn btn-success" type="submit" value="Actualizar Vehiculo">
+		<input class="btn btn-success" type="submit" value="Actualizar Cliente">
 	</form>
 </body>
 

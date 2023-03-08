@@ -3,6 +3,7 @@ package rent.car.modelo;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -54,8 +55,9 @@ public class Reserva {
 	@JoinColumn(name = "rese_id_vehiculo")
 	private Vehiculo vehiculo;
 
-	@OneToOne(mappedBy = "reserva")
+	@OneToOne(mappedBy = "reserva", cascade = CascadeType.REMOVE)
 	private Cobro cobro;
+
 	// GETTER & SETTER
 	public Integer getId() {
 		return id;

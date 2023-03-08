@@ -3,6 +3,7 @@ package rent.car.modelo;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -48,7 +49,7 @@ public class Cliente {
 	private String registro;
 
 	// RELACIONES
-	@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Reserva> reserva;
 
 	// TO STRING
