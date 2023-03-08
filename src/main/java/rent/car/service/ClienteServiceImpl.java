@@ -1,6 +1,8 @@
 package rent.car.service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +31,7 @@ public class ClienteServiceImpl implements IClienteService {
 
 	@Override
 	public void borrar(Integer id) {
-
+		this.clienteRepository.eliminar(id);
 	}
 
 	// BUSCAR APELLIDO
@@ -63,10 +65,12 @@ public class ClienteServiceImpl implements IClienteService {
 	}
 
 	public List<Cliente> clientesVIP() {
-		// TODO Auto-generated method stub
 		List<Cliente> clientes = this.clienteRepository.buscarClientes();
-
-		return clientes;
+		List<Cliente> clientesVIP = clientes.stream()
+				.sorted(Comparator.comparingDouble(
+						a -> a.getReserva().stream().map(b -> b.getTotal().doubleValue()).reduce(0.0, Double::sum)))
+				.collect(Collectors.toList());
+		return clientesVIP;
 
 	}
 
