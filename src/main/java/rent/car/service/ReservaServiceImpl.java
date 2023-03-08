@@ -91,8 +91,8 @@ public class ReservaServiceImpl implements IReservaService {
 			reserva.setTotal(total);
 			System.out.println("Costo total de la reserva: " + total + "$");
 
-			reserva.setNumero("Res-"+reserva.getCliente().getId());
-			
+			reserva.setNumero("Res-" + reserva.getCliente().getId());
+
 			// Guarda la reserva
 			this.reservaRepository.insertar(reserva);
 
@@ -118,6 +118,12 @@ public class ReservaServiceImpl implements IReservaService {
 	public List<Reserva> reporteReserva(LocalDateTime fechaInicio, LocalDateTime fechaFinal) {
 		// TODO Auto-generated method stub
 		return this.reservaRepository.reportesReserva(fechaInicio, fechaFinal);
+	}
+
+	@Override
+	public Reserva buscarNumero(String numero) {
+		this.reservaRepository.buscarPorNumero(numero);
+		return null;
 	}
 
 }

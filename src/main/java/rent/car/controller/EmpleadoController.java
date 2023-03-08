@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import rent.car.modelo.Cliente;
+import rent.car.modelo.Reserva;
 import rent.car.modelo.Vehiculo;
 import rent.car.service.IClienteService;
 import rent.car.service.IReservaService;
@@ -135,7 +136,6 @@ public class EmpleadoController {
 
 	@GetMapping("/reporteReservas")
 	public String reporteReservas(Model model) {
-		// this.reservaService.reporteReserva(null, null);
 		return "vReporteReserva";
 	}
 
@@ -159,6 +159,19 @@ public class EmpleadoController {
 		List<Cliente> lista = this.clienteService.clientesVIP();
 		model.addAttribute("empleados", lista);
 		return "vListaReporteCVIP";
+	}
+
+	@GetMapping("/retirar") // va a tomar referencia a la raiz de nuestra aplicacion
+	public String paginaBuscarReserva(Reserva reserva) {
+		return "vRetiroVehiculo";
+	}
+
+	@PostMapping("/retirar/reserva")
+	public String buscarReserva(String numero, Model model) {
+		System.out.println("este es numero de registro " + numero);
+		Reserva reserva = this.reservaService.buscarNumero(numero);
+		model.addAttribute("reserva", reserva);
+		return "redirect:/empleados/retirar";
 	}
 
 }

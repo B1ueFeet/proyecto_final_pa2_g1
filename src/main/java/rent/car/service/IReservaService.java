@@ -27,4 +27,6 @@ public interface IReservaService {
 
 	public List<Reserva> reporteReserva(LocalDateTime fechaInicio, LocalDateTime fechaFinal);
 
+	public Reserva buscarNumero(String numero);
+
 }
