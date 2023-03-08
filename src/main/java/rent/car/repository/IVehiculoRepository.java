@@ -34,14 +34,9 @@ public interface IVehiculoRepository {
 
 	public List<Vehiculo> buscarTodos();
 
-<<<<<<< HEAD
-	//Vehiuclos VIP
+	// Vehiuclos VIP
 	public List<Vehiculo> reporteVehiculo(LocalDateTime fecha);
-=======
-	public List<Vehiculo> reporteVehiculo();
-	
-	public List<Vehiculo> buscarTodosDisponibles();
 
->>>>>>> refs/remotes/origin/juan6
+	public List<Vehiculo> buscarTodosDisponibles();
 
 }

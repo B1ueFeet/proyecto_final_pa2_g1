@@ -32,13 +32,10 @@ public interface IVehiculoService {
 	public Vehiculo buscarPlaca(String placa);
 
 	public List<Vehiculo> encontrarTodos();
-<<<<<<< HEAD
 
 	// Vehiculos VIP
 	public List<Vehiculo> vehiculosVIP(LocalDateTime fecha);
-=======
-	
-	public  List<Vehiculo> buscarTodosDisponibles();
 
->>>>>>> refs/remotes/origin/juan6
+	public List<Vehiculo> buscarTodosDisponibles();
+
 }
