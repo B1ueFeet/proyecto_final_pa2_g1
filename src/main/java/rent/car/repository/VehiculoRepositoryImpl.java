@@ -108,7 +108,7 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 				.createQuery("SELECT v FROM Vehiculo v JOIN v.reserva r Join r.cobro co"
 						+ " WHERE MONTH(co.fecha) = :datoMes AND YEAR(co.fecha)= :datoAño", Vehiculo.class);
 		query.setParameter("datoMes", fecha.getMonthValue());
-		query.setParameter("datoAño", Integer.toString(fecha.getYear()));
+		query.setParameter("datoAño", fecha.getYear());
 		return query.getResultList();
 
 	}

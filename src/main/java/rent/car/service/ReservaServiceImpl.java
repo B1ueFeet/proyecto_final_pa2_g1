@@ -90,7 +90,7 @@ public class ReservaServiceImpl implements IReservaService {
 			reserva.setTotal(total);
 			System.out.println("Costo total de la reserva: " + total + "$");
 
-			reserva.setNumero("Res-" + reserva.getCliente().getId());
+			reserva.setNumero("Re" + cliente.getNombre().charAt(0) + vehiculo.getPlaca().charAt(0) + Math.random());
 
 			// Guarda la reserva
 			this.reservaRepository.insertar(reserva);

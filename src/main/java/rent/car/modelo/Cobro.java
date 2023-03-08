@@ -28,7 +28,7 @@ public class Cobro {
 	@Column(name = "cobr_tarjeta")
 	private String tarjeta;
 
-	@OneToOne
+	@OneToOne()
 	@JoinColumn(name = "cobr_id_reserva")
 	private Reserva reserva;
 
