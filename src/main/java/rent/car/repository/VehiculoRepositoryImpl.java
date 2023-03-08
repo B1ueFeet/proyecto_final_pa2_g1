@@ -105,9 +105,9 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 	public List<Vehiculo> reporteVehiculo(LocalDateTime fecha) {
 		// TODO Auto-generated method stub
 		TypedQuery<Vehiculo> query = this.entityManager
-				.createQuery("SELECT v FROM Vehiculo v JOIN v.Reserva r Join r.Cobro co"
+				.createQuery("SELECT v FROM Vehiculo v JOIN v.reserva r Join r.cobro co"
 						+ " WHERE MONTH(co.fecha) = :datoMes AND YEAR(co.fecha)= :datoAño", Vehiculo.class);
-		query.setParameter("datoMes", fecha.getMonth());
+		query.setParameter("datoMes", fecha.getMonthValue());
 		query.setParameter("datoAño", Integer.toString(fecha.getYear()));
 		return query.getResultList();
 

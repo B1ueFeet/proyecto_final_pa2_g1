@@ -163,18 +163,26 @@ public class EmpleadoController {
 		return "redirect:/empleados/buscarV";
 	}
 
-	@GetMapping("/reporte/clientesVIP")
+	@GetMapping("/reporte/listaClientesVIP")
 	public String reporteClientesVIP(Model model) {
 		List<Cliente> lista = this.clienteService.clientesVIP();
 		model.addAttribute("empleados", lista);
 
 		return "vListaReporteCVIP";
 	}
-	
-//	@GetMapping("/reporte/reservas")
-//	public String reporteVehiculos(Reserva Reserva) {
-//		return "vReporteReserva";
-//	}
+
+	@GetMapping("/reporte/vehiculosVIP")
+	public String reporteVehiculosVIP(Reserva Reserva) {
+		return "vReporteVehiculosVIP";
+	}
+
+	@PostMapping("/reporte/listaVehiculosVIP")
+	public String listaReporteVehiculosVIP(LocalDateTime fecha, Model model) {
+		System.out.println("fecha:" + fecha);
+		List<Vehiculo> lista = this.vehiculoService.vehiculosVIP(fecha);
+		model.addAttribute("reservas", lista);
+		return "vListaReporteVVIP";
+	}
 
 	@GetMapping("/retirar") // va a tomar referencia a la raiz de nuestra aplicacion
 	public String paginaBuscarReserva(Reserva reserva) {

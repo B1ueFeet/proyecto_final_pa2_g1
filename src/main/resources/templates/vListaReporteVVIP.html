@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<title>Page Title</title>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+	<script src='main.js'></script>
+</head>
+
+<body>
+	<table class="table table-success table-striped">
+		<thead>
+			<tr>
+				<th>Placa</th>
+				<th>Modelo</th>
+				<th>Marca</th>
+				<th>Año</th>
+				<th>País</th>
+				<th>Estado</th>
+				<th>Cilindraje</th>
+				<th>Avaluo</th>
+				<th>Valor</th>
+				<th>Total IVA</th>
+				<th>Total Reservas</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="vehiculo:${vehiculos}">
+				<td th:text="${vehiculo.placa}"></td>
+				<td th:text="${vehiculo.modelo}"></td>
+				<td th:text="${vehiculo.marca}"></td>
+				<td th:text="${vehiculo.anio}"></td>
+				<td th:text="${vehiculo.pais}"></td>
+				<td th:text="${vehiculo.estado}"></td>
+				<td th:text="${vehiculo.cilindraje}"></td>
+				<td th:text="${vehiculo.avaluo}"></td>
+				<td th:text="${vehiculo.valor}"></td>
+				<td th:text="${vehiculo.reserva.getIva}"></td>
+				<td th:text="${vehiculo.reserva.getTotal}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+
+</html>

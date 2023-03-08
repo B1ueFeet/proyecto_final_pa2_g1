@@ -86,6 +86,9 @@ public class VehiculoServiceImpl implements IVehiculoService {
 				.sorted(Comparator.comparingDouble(
 						a -> a.getReserva().stream().map(b -> b.getTotal().doubleValue()).reduce(0.0, Double::sum)))
 				.collect(Collectors.toList());
+		for(Vehiculo v : vehiculosVIP) {
+			System.out.println(v.getReserva());
+		}
 		return vehiculosVIP;
 	}
 

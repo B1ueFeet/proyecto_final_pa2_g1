@@ -5,6 +5,7 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -41,7 +42,7 @@ public class Vehiculo {
 	private BigDecimal valor;
 
 	// RELACIONES
-	@OneToMany(mappedBy = "vehiculo")
+	@OneToMany(mappedBy = "vehiculo", fetch = FetchType.EAGER)
 	private List<Reserva> reserva;
 
 	// GETTER & SETTER
@@ -134,12 +135,15 @@ public class Vehiculo {
 	}
 
 	// TO STRING
+	// Placa: PFQ-0445 - Modelo: Sportage – Marca: KIA – Año: 2019 – Estado: No
+	// Disponible – Valor por día: $80.00
+//	return "Placa: " + placa + " - Modelo: " + modelo + " - Marca: " + marca + " - Año: " + anio + " - Estado="
+//			+ estado + " - Valor=" + valor + "]";
+//
 	@Override
 	public String toString() {
-		// Placa: PFQ-0445 - Modelo: Sportage – Marca: KIA – Año: 2019 – Estado: No
-		// Disponible – Valor por día: $80.00
-		return "Placa: " + placa + " - Modelo: " + modelo + " - Marca: " + marca + " - Año: " + anio + " - Estado="
-				+ estado + " - Valor=" + valor + "]";
+		return "Vehiculo [id=" + id + ", placa=" + placa + ", modelo=" + modelo + ", marca=" + marca + ", anio=" + anio
+				+ ", pais=" + pais + ", estado=" + estado + ", cilindraje=" + cilindraje + ", avaluo=" + avaluo
+				+ ", valor=" + valor + "]";
 	}
-
 }
