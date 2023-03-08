@@ -14,7 +14,7 @@ import rent.car.repository.IVehiculoRepository;
 import rent.car.repository.PreReservaRepository;
 
 @Service
-public class PreReservaService {
+public class PreReservaService implements IPreReservaService{
 
 	@Autowired
 	private IVehiculoRepository vehiculoRepository;
@@ -22,7 +22,7 @@ public class PreReservaService {
 	@Autowired
 	private PreReservaRepository preReservaRepository;
 	
-	public void guardar(PreReserva preReserva) {
+	public void insertar(PreReserva preReserva) {
 		this.preReservaRepository.insertar(preReserva);
 	}
 	
@@ -40,5 +40,6 @@ public class PreReservaService {
 		System.out.println("Calculo valor: " + total);
 		return total;
 	}
+
 
 }

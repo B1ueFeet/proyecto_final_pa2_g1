@@ -17,6 +17,6 @@ public class PreReservaRepository {
 	
 	public void insertar(PreReserva pre) {
 		this.entityManager.persist(pre);
-
 	}
+	
 }
