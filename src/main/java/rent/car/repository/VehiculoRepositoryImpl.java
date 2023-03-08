@@ -1,5 +1,6 @@
 package rent.car.repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -100,9 +101,15 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 		return query.getResultList();
 	}
 
-	public List<Vehiculo> reporteVehiculo() {
+	// Vehiculos VIP
+	public List<Vehiculo> reporteVehiculo(LocalDateTime fecha) {
 		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<Vehiculo> query = this.entityManager
+				.createQuery("SELECT v FROM Vehiculo v JOIN v.Reserva r Join r.Cobro co"
+						+ " WHERE MONTH(co.fecha) = :datoMes AND YEAR(co.fecha)= :datoAño", Vehiculo.class);
+		query.setParameter("datoMes", fecha.getMonth());
+		query.setParameter("datoAño", Integer.toString(fecha.getYear()));
+		return query.getResultList();
 
 	}
 

@@ -1,5 +1,6 @@
 package rent.car.repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import rent.car.modelo.Vehiculo;
@@ -33,6 +34,7 @@ public interface IVehiculoRepository {
 
 	public List<Vehiculo> buscarTodos();
 
-	public List<Vehiculo> reporteVehiculo();
+	//Vehiuclos VIP
+	public List<Vehiculo> reporteVehiculo(LocalDateTime fecha);
 
 }

@@ -90,5 +90,14 @@ public class ReservaRepositoryImpl implements IReservaRepository {
 
 		return query.getResultList();
 	}
+	
+	//Todas las reservas
+
+	@Override
+	public List<Reserva> reservas() {
+		// TODO Auto-generated method stub
+		TypedQuery<Reserva> query = this.manager.createQuery("SELECT r FROM Reserva r", Reserva.class);
+		return query.getResultList();
+	}
 
 }
