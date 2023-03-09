@@ -17,10 +17,12 @@ import rent.car.modelo.Cliente;
 import rent.car.modelo.Reserva;
 import rent.car.modelo.Usuario;
 import rent.car.modelo.Vehiculo;
+import rent.car.modelo.Vendedor;
 import rent.car.service.IClienteService;
 import rent.car.service.IReservaService;
 import rent.car.service.IUsuarioService;
 import rent.car.service.IVehiculoService;
+import rent.car.service.IVendedorService;
 
 @Controller
 @RequestMapping("/empleados")
@@ -37,46 +39,44 @@ public class EmpleadoController {
 
 	@Autowired
 	private IUsuarioService iUsuarioService;
-	
-	
+
+	private IVendedorService VendedorService;
+
 	@GetMapping("/inicio")
 	public String inicio() {
 		return "vInicioE";
 	}
 
 	// registro de un cliente
-		@GetMapping("/usuario/registro")
-		public String paginaInicio(Usuario usuario) {
-			return "vRegistroUsuarioE";
-		}
-		
-	//registro usuario
+	@GetMapping("/usuario/registro")
+	public String paginaInicio(Usuario usuario) {
+		return "vRegistroUsuarioE";
+	}
+
+	// registro usuario
 	@PostMapping("/insertarU")
 	public String insertarUsuario(Usuario usuario) {
 		this.iUsuarioService.agregar(usuario);
 		return "guardado";
 	}
-	
+
 	// registro de un cliente
 	@GetMapping("/cliente/registro")
 	public String paginaInicio(Cliente cliente) {
 		return "vRegistroClienteE";
 	}
-	
-	
 
 	@PostMapping("/insertar")
 	public String insertarCliente(Cliente cliente) {
 		this.clienteService.registrar("E", cliente);
 		return "guardado";
 	}
-	
+
 	@PostMapping("/insertarPrueba")
 	public String insertarPruebaCliente(Cliente cliente) {
 		this.clienteService.registrar("E", cliente);
 		return "guardado";
 	}
-
 
 	// busqueda por apellido
 	@GetMapping("/inicio/buscar/apellido")
@@ -262,6 +262,18 @@ public class EmpleadoController {
 		Reserva reservav = this.reservaService.buscarNumero(numero);
 		this.reservaService.retirarVehiculoReservado(numero);
 		return "redirect:/empleados/retirar";
+	}
+
+	// Registro vendedor
+	@GetMapping("/vendedor/registro")
+	public String paginaVendedor(Vendedor vendedor) {
+		return "vInsertarVendedor";
+	}
+
+	@PostMapping("/insertarVendedor")
+	public String insertarVendedor(Vendedor vendedor) {
+		this.VendedorService.guardar(vendedor);
+		return "redirect:/empleados/vendedor/registro";
 	}
 
 }
