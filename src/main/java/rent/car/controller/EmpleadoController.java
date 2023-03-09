@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import rent.car.modelo.Cliente;
+import rent.car.modelo.Mecanico;
 import rent.car.modelo.Reserva;
 import rent.car.modelo.Usuario;
 import rent.car.modelo.Vehiculo;
 import rent.car.modelo.Vendedor;
 import rent.car.service.IClienteService;
+import rent.car.service.IMecanicoSevice;
 import rent.car.service.IReservaService;
 import rent.car.service.IUsuarioService;
 import rent.car.service.IVehiculoService;
@@ -36,6 +38,11 @@ public class EmpleadoController {
 
 	@Autowired
 	private IReservaService reservaService;
+	
+	@Autowired
+	private IMecanicoSevice iMecanicoSevice;
+	
+	
 
 	@Autowired
 	private IUsuarioService iUsuarioService;
@@ -71,6 +78,10 @@ public class EmpleadoController {
 		this.clienteService.registrar("E", cliente);
 		return "guardado";
 	}
+	
+	
+	
+	
 
 	@PostMapping("/insertarPrueba")
 	public String insertarPruebaCliente(Cliente cliente) {
@@ -150,11 +161,27 @@ public class EmpleadoController {
 	public String paginaInicio(Vehiculo vehiculo) {
 		return "vRegistroVehiculo";
 	}
+	
+	
+	@GetMapping("/inicio/registromeca") // va a tomar referencia a la raiz de nuestra aplicacion
+	public String paginaInicio(Mecanico mecanico) {
+		return "vRegistroMecanico";
+	}
 
 	@PostMapping("/insertarV")
 	public String insertarVehiculo(Vehiculo vehiculo) {
 		vehiculo.setEstado("D");
 		this.vehiculoService.guardar(vehiculo);
+		return "guardado";
+	}
+	
+	
+	@PostMapping("/insertarM")
+	public String insertarMecanico(Mecanico mecanico) {
+	
+		
+		this.iMecanicoSevice.ingresarMecanico(mecanico);
+
 		return "guardado";
 	}
 
