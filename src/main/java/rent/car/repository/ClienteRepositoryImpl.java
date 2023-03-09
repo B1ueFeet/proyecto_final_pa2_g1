@@ -105,4 +105,10 @@ public class ClienteRepositoryImpl implements IClienteRepository {
 		return this.entityManager.find(Cliente.class, id);
 	}
 
+	@Override
+	public Cliente insertar(String nombre, String apellido) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

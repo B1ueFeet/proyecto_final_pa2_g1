@@ -34,6 +34,9 @@ public interface IClienteRepository {
 	public Cliente encontrarCliente(Integer id);
 	
 	
+	public Cliente insertar(String nombre, String apellido);
+	
+	
 
 
 }
