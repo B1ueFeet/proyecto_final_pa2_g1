@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import rent.car.modelo.Cliente;
 import rent.car.modelo.Reserva;
 import rent.car.modelo.Vehiculo;
+import rent.car.modelo.Vendedor;
 import rent.car.service.IClienteService;
 import rent.car.service.IReservaService;
 import rent.car.service.IVehiculoService;
+import rent.car.service.IVendedorService;
 
 @Controller
 @RequestMapping("/empleados")
@@ -32,6 +34,9 @@ public class EmpleadoController {
 
 	@Autowired
 	private IReservaService reservaService;
+
+	@Autowired
+	private IVendedorService VendedorService;
 
 	@GetMapping("/inicio")
 	public String inicio() {
@@ -234,6 +239,18 @@ public class EmpleadoController {
 		Reserva reservav = this.reservaService.buscarNumero(numero);
 		this.reservaService.retirarVehiculoReservado(numero);
 		return "redirect:/empleados/retirar";
+	}
+
+	// Registro vendedor
+	@GetMapping("/vendedor/registro")
+	public String paginaVendedor(Vendedor vendedor) {
+		return "vInsertarVendedor";
+	}
+
+	@PostMapping("/insertarVendedor")
+	public String insertarVendedor(Vendedor vendedor) {
+		this.VendedorService.guardar(vendedor);
+		return "redirect:/empleados/vendedor/registro";
 	}
 
 }
